@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GaragePro Auto Repair | Expert Mechanics You Can Trust</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            garage: {
+              900: '#0f0f0f',
+              800: '#1a1a1a',
+              700: '#262626',
+              600: '#404040',
+              500: '#525252',
+              red: '#dc2626',
+              redDark: '#b91c1c',
+              redLight: '#ef4444',
+            }
+          },
+          fontFamily: {
+            bebas: ['Bebas Neue', 'cursive'],
+            inter: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .diagonal-clip { clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); }
+    .diagonal-clip-reverse { clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); }
+    .text-shadow-glow { text-shadow: 0 0 40px rgba(220, 38, 38, 0.4); }
+    .gear-spin { animation: spin 20s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .marquee-track { animation: marquee 30s linear infinite; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .service-card:hover .service-icon { transform: scale(1.15) rotate(5deg); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .btn-red {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-red:hover {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+    }
+  </style>
+</head>
+<body class="font-inter bg-garage-900 text-white antialiased">
+
+  <!-- Top Bar -->
+  <div class="bg-garage-red text-white py-2 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center gap-4">
+        <span><i class="fas fa-phone mr-1"></i> (555) 234-5678</span>
+        <span class="hidden sm:inline"><i class="fas fa-clock mr-1"></i> Mon-Sat: 7AM - 7PM</span>
+      </div>
+      <span class="font-medium">FREE DIAGNOSTIC WITH ANY SERVICE</span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed w-full top-8 z-50 transition-all duration-300 bg-garage-900/95 backdrop-blur-md border-b border-garage-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <svg class="w-10 h-10 text-garage-red" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="6"/>
+          <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="4" stroke-dasharray="8 6"/>
+          <circle cx="50" cy="50" r="8" fill="currentColor"/>
+        </svg>
+        <div>
+          <span class="font-bebas text-2xl tracking-wider">GARAGE<span class="text-garage-red">PRO</span></span>
+          <p class="text-[10px] tracking-[0.3em] text-garage-500 -mt-1">AUTO REPAIR</p>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#services" class="text-sm font-medium text-gray-300 hover:text-garage-redLight transition-colors">Services</a>
+        <a href="#about" class="text-sm font-medium text-gray-300 hover:text-garage-redLight transition-colors">About</a>
+        <a href="#why-us" class="text-sm font-medium text-gray-300 hover:text-garage-redLight transition-colors">Why Us</a>
+        <a href="#reviews" class="text-sm font-medium text-gray-300 hover:text-garage-redLight transition-colors">Reviews</a>
+        <a href="#contact" class="btn-red px-6 py-2.5 rounded font-semibold text-sm">Book Now</a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-garage-900/98 z-[60] hidden flex-col items-center justify-center gap-8">
+    <button id="closeMenu" class="absolute top-6 right-6 text-3xl text-white"><i class="fas fa-times"></i></button>
+    <a href="#services" class="text-2xl font-bebas tracking-wider text-white hover:text-garage-redLight">Services</a>
+    <a href="#about" class="text-2xl font-bebas tracking-wider text-white hover:text-garage-redLight">About</a>
+    <a href="#why-us" class="text-2xl font-bebas tracking-wider text-white hover:text-garage-redLight">Why Us</a>
+    <a href="#reviews" class="text-2xl font-bebas tracking-wider text-white hover:text-garage-redLight">Reviews</a>
+    <a href="#contact" class="btn-red px-8 py-3 rounded font-semibold text-lg mt-4">Book Now</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative min-h-screen flex items-center pt-32 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="images/hero.jpg" alt="Auto repair shop" class="w-full h-full object-cover opacity-40">
+      <div class="absolute inset-0 bg-gradient-to-r from-garage-900 via-garage-900/80 to-transparent"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-20">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 bg-garage-red/20 border border-garage-red/40 rounded-full px-4 py-2 mb-6">
+          <span class="w-2 h-2 bg-garage-redLight rounded-full animate-pulse"></span>
+          <span class="text-sm text-garage-redLight font-medium">Open Now — Walk-Ins Welcome</span>
+        </div>
+        <h1 class="font-bebas text-6xl sm:text-7xl md:text-8xl leading-none mb-6">
+          WE FIX<br><span class="text-garage-red text-shadow-glow">EVERYTHING</span><br>WITH AN ENGINE
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-400 mb-8 max-w-lg leading-relaxed">
+          From oil changes to complete engine rebuilds. Honest mechanics, fair prices, and a 2-year warranty on all repairs.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="btn-red px-8 py-4 rounded-lg font-bold text-lg inline-flex items-center gap-2">
+            <i class="fas fa-calendar-check"></i> Schedule Service
+          </a>
+          <a href="tel:5552345678" class="border-2 border-garage-600 hover:border-garage-redLight px-8 py-4 rounded-lg font-bold text-lg transition-all hover:bg-garage-800">
+            <i class="fas fa-phone mr-2"></i> Call Now
+          </a>
+        </div>
+        <div class="flex items-center gap-6 mt-10 pt-8 border-t border-garage-700">
+          <div>
+            <p class="font-bebas text-4xl text-garage-redLight">15+</p>
+            <p class="text-sm text-gray-500">Years Experience</p>
+          </div>
+          <div class="w-px h-12 bg-garage-700"></div>
+          <div>
+            <p class="font-bebas text-4xl text-garage-redLight">5,000+</p>
+            <p class="text-sm text-gray-500">Cars Repaired</p>
+          </div>
+          <div class="w-px h-12 bg-garage-700"></div>
+          <div>
+            <p class="font-bebas text-4xl text-garage-redLight">4.9</p>
+            <p class="text-sm text-gray-500">Star Rating</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Decorative gear -->
+    <svg class="absolute -right-20 -bottom-20 w-96 h-96 text-garage-800 gear-spin opacity-30 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 15V5M50 95v-10M85 50h10M5 50h10M75.98 24.02l7.07-7.07M17.95 82.05l7.07-7.07M75.98 75.98l7.07 7.07M17.95 17.95l7.07 7.07" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-width="4"/>
+      <circle cx="50" cy="50" r="12" stroke="currentColor" stroke-width="3"/>
+    </svg>
+  </section>
+
+  <!-- Marquee Brands -->
+  <div class="bg-garage-red py-4 overflow-hidden">
+    <div class="marquee-track flex items-center gap-16 whitespace-nowrap w-max">
+      <span class="font-bebas text-xl tracking-widest">TOYOTA</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">HONDA</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">FORD</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">CHEVROLET</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">BMW</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">MERCEDES</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">AUDI</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">NISSAN</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">HYUNDAI</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">KIA</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">VOLKSWAGEN</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">SUBARU</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">TOYOTA</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">HONDA</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">FORD</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">CHEVROLET</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">BMW</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">MERCEDES</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">AUDI</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">NISSAN</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">HYUNDAI</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">KIA</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">VOLKSWAGEN</span><span class="text-garage-900">/</span>
+      <span class="font-bebas text-xl tracking-widest">SUBARU</span><span class="text-garage-900">/</span>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services" class="py-24 bg-garage-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">WHAT WE DO</p>
+        <h2 class="font-bebas text-5xl sm:text-6xl">OUR <span class="text-garage-red">SERVICES</span></h2>
+        <p class="text-gray-400 mt-4 max-w-xl mx-auto">Full-service auto repair for all makes and models. From routine maintenance to major overhauls.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-oil-can text-2xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Oil Change</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Full synthetic, synthetic blend, or conventional oil changes with OEM filter replacement.</p>
+          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $39.99</p>
+        </div>
+        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-car-battery text-2xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Battery Service</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Testing, replacement, and charging system diagnostics. Free installation with purchase.</p>
+          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $89.99</p>
+        </div>
+        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-tire text-2xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Tires & Alignment</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Tire sales, rotation, balancing, and 4-wheel computer alignment for smooth driving.</p>
+          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $49.99</p>
+        </div>
+        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-fan text-2xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-2xl mb-2 tracking-wide">AC & Heating</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Complete HVAC service. Recharge, leak detection, compressor repair, and heater core service.</p>
+          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $69.99</p>
+        </div>
+        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-car-crash text-2xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Brake Service</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Pad and rotor replacement, brake fluid flush, caliper service. Your safety is our priority.</p>
+          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $129.99</p>
+        </div>
+        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-engine text-2xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Engine Repair</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Diagnostics, timing belts, head gaskets, and complete engine rebuilds. All engines, all problems.</p>
+          <p class="text-garage-redLight font-bebas text-2xl mt-4">FREE DIAGNOSTIC</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <div class="relative">
+            <img src="images/mechanic.jpg" alt="Professional mechanic at work" class="rounded-xl w-full object-cover h-[500px]">
+            <div class="absolute -bottom-6 -right-6 bg-garage-red p-6 rounded-xl">
+              <p class="font-bebas text-5xl">15+</p>
+              <p class="text-sm">Years of trusted<br>auto repair service</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">ABOUT GARAGEPRO</p>
+          <h2 class="font-bebas text-5xl sm:text-6xl mb-6">BUILT ON <span class="text-garage-red">TRUST</span> & <span class="text-garage-red">QUALITY</span></h2>
+          <p class="text-gray-400 leading-relaxed mb-6">
+            GaragePro started with one mechanic and a dream: to provide honest, high-quality auto repair that everyday people can afford. No upsells, no surprises, just great work at fair prices.
+          </p>
+          <p class="text-gray-400 leading-relaxed mb-8">
+            Our ASE-certified technicians use the latest diagnostic equipment and OEM parts to ensure every repair meets factory standards. We explain every issue in plain English and always get your approval before any work begins.
+          </p>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-certificate text-garage-redLight"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">ASE Certified</h4>
+                <p class="text-sm text-gray-500">Master technicians on staff</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-shield-alt text-garage-redLight"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">2-Year Warranty</h4>
+                <p class="text-sm text-gray-500">On all parts and labor</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-dollar-sign text-garage-redLight"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Fair Pricing</h4>
+                <p class="text-sm text-gray-500">Transparent quotes, no surprises</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-bolt text-garage-redLight"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Same-Day Service</h4>
+                <p class="text-sm text-gray-500">Most repairs done in hours</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why-us" class="py-24 bg-garage-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">THE GARAGEPRO DIFFERENCE</p>
+        <h2 class="font-bebas text-5xl sm:text-6xl">WHY DRIVERS <span class="text-garage-red">TRUST US</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <div class="w-20 h-20 bg-garage-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-search-dollar text-3xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-xl tracking-wide mb-2">FREE DIAGNOSTIC</h3>
+          <p class="text-gray-400 text-sm">We scan your car and explain what's wrong before you spend a dime. No hidden fees.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-20 h-20 bg-garage-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-handshake text-3xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-xl tracking-wide mb-2">NO PRESSURE</h3>
+          <p class="text-gray-400 text-sm">We give you the facts and let you decide. No pushy sales tactics, ever.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-20 h-20 bg-garage-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-camera text-3xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-xl tracking-wide mb-2">PHOTO REPORTS</h3>
+          <p class="text-gray-400 text-sm">See photos of the actual problem on your phone before we fix anything.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-20 h-20 bg-garage-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-shuttle-van text-3xl text-garage-redLight"></i>
+          </div>
+          <h3 class="font-bebas text-xl tracking-wide mb-2">FREE SHUTTLE</h3>
+          <p class="text-gray-400 text-sm">Need a ride? Our free shuttle service gets you where you need to go.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">TESTIMONIALS</p>
+        <h2 class="font-bebas text-5xl sm:text-6xl">WHAT OUR <span class="text-garage-red">CUSTOMERS</span> SAY</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-garage-800 border border-garage-700 rounded-xl p-8 reveal">
+          <div class="flex text-garage-redLight mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-300 mb-6 leading-relaxed">"Finally, a mechanic I can trust! They showed me exactly what was wrong with my brakes and fixed it same day. The price was half what the dealership quoted."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-garage-red rounded-full flex items-center justify-center font-bold">MR</div>
+            <div>
+              <p class="font-semibold">Miguel Rodriguez</p>
+              <p class="text-sm text-gray-500">Honda Civic Owner</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-garage-800 border border-garage-700 rounded-xl p-8 reveal">
+          <div class="flex text-garage-redLight mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-300 mb-6 leading-relaxed">"My AC went out in the middle of summer. GaragePro had it ice cold again in 2 hours. They even checked my coolant for free. These guys are the real deal."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-garage-red rounded-full flex items-center justify-center font-bold">SL</div>
+            <div>
+              <p class="font-semibold">Sarah Lopez</p>
+              <p class="text-sm text-gray-500">Toyota RAV4 Owner</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-garage-800 border border-garage-700 rounded-xl p-8 reveal">
+          <div class="flex text-garage-redLight mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-300 mb-6 leading-relaxed">"I take all 3 of my company trucks here. They've never let me down. Honest, fast, and they stand behind their work with that 2-year warranty."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-garage-red rounded-full flex items-center justify-center font-bold">JT</div>
+            <div>
+              <p class="font-semibold">James Thompson</p>
+              <p class="text-sm text-gray-500">Small Business Owner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-garage-800 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(220,38,38,0.1) 35px, rgba(220,38,38,0.1) 70px);"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative reveal">
+      <h2 class="font-bebas text-5xl sm:text-6xl md:text-7xl mb-6">DON'T IGNORE<br>THAT <span class="text-garage-red">CHECK ENGINE</span> LIGHT</h2>
+      <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Small problems turn into expensive repairs. Bring your car in for a free diagnostic and catch issues before they become headaches.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#contact" class="btn-red px-10 py-5 rounded-lg font-bold text-xl inline-flex items-center gap-3">
+          <i class="fas fa-wrench"></i> Book Your Service
+        </a>
+      </div>
+      <p class="text-gray-500 mt-6 text-sm"><i class="fas fa-check-circle text-garage-redLight mr-1"></i> Free 24-point inspection with every visit</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div class="reveal">
+          <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">GET IN TOUCH</p>
+          <h2 class="font-bebas text-5xl sm:text-6xl mb-6">SCHEDULE YOUR <span class="text-garage-red">SERVICE</span></h2>
+          <p class="text-gray-400 mb-8 leading-relaxed">Fill out the form and we'll get back to you within 30 minutes during business hours to confirm your appointment.</p>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-map-marker-alt text-garage-redLight"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Visit Us</h4>
+                <p class="text-gray-400">2850 Industrial Blvd, Suite 12<br>Houston, TX 77045</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-phone text-garage-redLight"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Call Us</h4>
+                <p class="text-gray-400">(555) 234-5678</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-envelope text-garage-redLight"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Email</h4>
+                <p class="text-gray-400">service@garagepro.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <h4 class="font-bebas text-xl tracking-wide mb-4">BUSINESS HOURS</h4>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between border-b border-garage-700 pb-2"><span>Monday - Friday</span><span class="text-gray-400">7:00 AM - 7:00 PM</span></div>
+              <div class="flex justify-between border-b border-garage-700 pb-2"><span>Saturday</span><span class="text-gray-400">8:00 AM - 5:00 PM</span></div>
+              <div class="flex justify-between"><span>Sunday</span><span class="text-garage-redLight">Closed</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-garage-800 border border-garage-700 rounded-xl p-8 reveal">
+          <form id="bookingForm">
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-sm font-medium mb-2">First Name</label>
+                <input type="text" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors" placeholder="John">
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Last Name</label>
+                <input type="text" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors" placeholder="Doe">
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Phone</label>
+              <input type="tel" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors" placeholder="(555) 123-4567">
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Vehicle Info (Year/Make/Model)</label>
+              <input type="text" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors" placeholder="2019 Honda Accord">
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Service Needed</label>
+              <select required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors">
+                <option value="">Select a service...</option>
+                <option>Oil Change</option>
+                <option>Brake Service</option>
+                <option>AC/Heating</option>
+                <option>Engine Repair</option>
+                <option>Battery Service</option>
+                <option>Tires & Alignment</option>
+                <option>Diagnostic Check</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-2">Preferred Date</label>
+              <input type="date" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors">
+            </div>
+            <button type="submit" class="btn-red w-full py-4 rounded-lg font-bold text-lg">
+              <i class="fas fa-calendar-check mr-2"></i> Request Appointment
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-garage-900 border-t border-garage-700 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 text-garage-red" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="6"/>
+            <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="4" stroke-dasharray="8 6"/>
+            <circle cx="50" cy="50" r="8" fill="currentColor"/>
+          </svg>
+          <div>
+            <span class="font-bebas text-xl tracking-wider">GARAGE<span class="text-garage-red">PRO</span></span>
+            <p class="text-[10px] tracking-[0.3em] text-garage-500">AUTO REPAIR</p>
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm">2024 GaragePro Auto Repair. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-10 h-10 bg-garage-800 rounded-full flex items-center justify-center hover:bg-garage-red transition-colors"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="w-10 h-10 bg-garage-800 rounded-full flex items-center justify-center hover:bg-garage-red transition-colors"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="w-10 h-10 bg-garage-800 rounded-full flex items-center justify-center hover:bg-garage-red transition-colors"><i class="fab fa-google"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+    });
+    
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+    });
+    
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Form
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you! We will call you within 30 minutes to confirm your appointment.');
+      this.reset();
+    });
+
+    // Navbar
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('shadow-lg');
+      } else {
+        navbar.classList.remove('shadow-lg');
+      }
+    });
+  </script>
+</body>
+</html>
