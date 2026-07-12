@@ -1,1102 +1,754 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VerdeVida Jardinería | Corte de Grama y Mantenimiento de Jardines</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2d5a27;
-            --primary-dark: #1e3d1a;
-            --secondary: #7cb342;
-            --accent: #ff8f00;
-            --light: #f1f8e9;
-            --dark: #1b1b1b;
-            --white: #ffffff;
-            --gray: #f5f5f5;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo i {
-            color: var(--secondary);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .btn-nav {
-            background: var(--primary);
-            color: var(--white) !important;
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            transition: all 0.3s !important;
-        }
-
-        .btn-nav:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .btn-nav::after {
-            display: none !important;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://kimi-web-img.moonshot.cn/img/beautifulboundarieslawn.com/1ad3eeb499e207f00981df3409828d2d60006357.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 0 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--secondary);
-            color: var(--white);
-            border: 2px solid var(--secondary);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-outline:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-        }
-
-        /* Services */
-        .services {
-            padding: 6rem 5%;
-            background: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header p {
-            color: #666;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .service-img {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .service-img::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(transparent, rgba(255,255,255,0.9));
-        }
-
-        .service-content {
-            padding: 1.5rem 2rem 2rem;
-        }
-
-        .service-content h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .service-content p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-price {
-            display: inline-block;
-            background: var(--light);
-            color: var(--primary);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        /* About */
-        .about {
-            padding: 6rem 5%;
-            background: var(--light);
-        }
-
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .about-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .about-content p {
-            color: #555;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 2rem;
-            color: var(--secondary);
-            font-weight: 800;
-        }
-
-        .stat-item p {
-            font-size: 0.9rem;
-            color: #777;
-            margin-top: 0.2rem;
-        }
-
-        /* Gallery */
-        .gallery {
-            padding: 6rem 5%;
-            background: var(--white);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            height: 280px;
-            cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            color: var(--white);
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 6rem 5%;
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .testimonials .section-header h2,
-        .testimonials .section-header p {
-            color: var(--white);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .testimonial-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .testimonial-card .stars {
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .author-info h4 {
-            font-size: 1rem;
-        }
-
-        .author-info span {
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-
-        /* Contact */
-        .contact {
-            padding: 6rem 5%;
-            background: var(--light);
-        }
-
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            background: var(--white);
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .contact-info {
-            padding: 3rem;
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .contact-info h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.7;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .contact-detail i {
-            font-size: 1.2rem;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-form {
-            padding: 3rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-family: 'Montserrat', sans-serif;
-            transition: border-color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--secondary);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            background: var(--secondary);
-            color: var(--white);
-            border: none;
-            border-radius: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-submit:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            color: var(--white);
-            padding: 4rem 5% 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-        }
-
-        .footer-brand .logo {
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            opacity: 0.7;
-            line-height: 1.7;
-        }
-
-        .footer-links h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.6;
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terra Verde Paisajismo | Diseño y Cuidado de Jardines en Houston, TX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terra: {
+              50: '#F7F5EE',
+              100: '#EFEBDD',
+              cream: '#F8F6F1',
+              forest: '#173A2C',
+              moss: '#2D6A4F',
+              fern: '#52B788',
+              mint: '#B7E4C7',
+              bark: '#6B4F3B',
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+          },
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            body: ['Work Sans', 'sans-serif'],
+          }
         }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .about-container,
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    .blob { border-radius: 62% 38% 55% 45% / 45% 55% 45% 55%; }
+    .blob-2 { border-radius: 42% 58% 65% 35% / 55% 40% 60% 45%; }
+    .vine-divider { display: block; width: 100%; height: auto; }
+    .vine-path { stroke-dasharray: 1400; stroke-dashoffset: 1400; transition: stroke-dashoffset 1.6s ease; }
+    .vine-path.drawn { stroke-dashoffset: 0; }
+    .leaf-sway { animation: sway 6s ease-in-out infinite; transform-origin: bottom center; }
+    @keyframes sway { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+    .marquee-track { animation: marquee 32s linear infinite; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(.22,1,.36,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .service-card:hover .service-icon { transform: scale(1.1) rotate(-4deg); }
+    .btn-fern {
+      background: linear-gradient(135deg, #2D6A4F 0%, #173A2C 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-fern:hover {
+      background: linear-gradient(135deg, #52B788 0%, #2D6A4F 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(45, 106, 79, 0.35);
+    }
+    .text-outline {
+      -webkit-text-stroke: 1.5px #2D6A4F;
+      color: transparent;
+    }
+  </style>
 </head>
-<body>
+<body class="font-body bg-terra-cream text-terra-forest antialiased">
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-leaf"></i>
-            VerdeVida
-        </div>
-        <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#contacto" class="btn-nav">Contactar</a></li>
-        </ul>
-        <div class="mobile-menu">
-            <i class="fas fa-bars"></i>
-        </div>
-    </nav>
+  <!-- Top Bar -->
+  <div class="bg-terra-forest text-terra-mint py-2 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center gap-4">
+        <span><i class="fas fa-phone mr-1"></i> (713) 555-0142</span>
+        <span class="hidden sm:inline"><i class="fas fa-clock mr-1"></i> Lun-Sáb: 7AM - 6PM</span>
+      </div>
+      <span class="font-medium">CONSULTA DE DISEÑO GRATIS</span>
+    </div>
+  </div>
 
-    <!-- Hero -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Tu Jardín, Nuestra Pasión</h1>
-            <p>Servicios profesionales de jardinería, corte de grama y mantenimiento de áreas verdes. Transformamos tu espacio exterior en un paraíso.</p>
-            <div class="btn-group">
-                <a href="#contacto" class="btn btn-primary">
-                    <i class="fas fa-calendar-check"></i> Solicitar Servicio
-                </a>
-                <a href="#servicios" class="btn btn-outline">
-                    <i class="fas fa-list"></i> Ver Servicios
-                </a>
-            </div>
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed w-full top-8 z-50 transition-all duration-300 bg-terra-cream/90 backdrop-blur-md border-b border-terra-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <svg class="w-10 h-10 text-terra-moss leaf-sway" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 90C50 90 20 75 20 45C20 25 35 10 50 10C65 10 80 25 80 45C80 75 50 90 50 90Z" stroke="currentColor" stroke-width="5"/>
+          <path d="M50 90V30" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <span class="font-display font-semibold text-2xl tracking-tight">Terra <span class="text-terra-fern">Verde</span></span>
+          <p class="text-[10px] tracking-[0.3em] text-terra-bark -mt-1">PAISAJISMO</p>
         </div>
-        <div class="scroll-down">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#services" class="text-sm font-medium text-terra-forest/80 hover:text-terra-fern transition-colors">Servicios</a>
+        <a href="#about" class="text-sm font-medium text-terra-forest/80 hover:text-terra-fern transition-colors">Nosotros</a>
+        <a href="#why-us" class="text-sm font-medium text-terra-forest/80 hover:text-terra-fern transition-colors">Por Qué Elegirnos</a>
+        <a href="#reviews" class="text-sm font-medium text-terra-forest/80 hover:text-terra-fern transition-colors">Reseñas</a>
+        <a href="#contact" class="btn-fern text-white px-6 py-2.5 rounded-full font-semibold text-sm">Pedir Cotización</a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-2xl text-terra-forest"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
 
-    <!-- Services -->
-    <section class="services" id="servicios">
-        <div class="section-header fade-in">
-            <h2>Nuestros Servicios</h2>
-            <p>Ofrecemos soluciones integrales para el cuidado y mantenimiento de tus espacios verdes con profesionales calificados.</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card fade-in">
-                <div class="service-img" style="background-image: url('https://kimi-web-img.moonshot.cn/img/images.ctfassets.net/b330959f15c521167a298dc96ea0d373eccb7b2a.jpg')"></div>
-                <div class="service-content">
-                    <h3><i class="fas fa-cut" style="color: var(--secondary); margin-right: 0.5rem;"></i>Corte de Grama</h3>
-                    <p>Servicio profesional de corte de césped con maquinaria de alta calidad. Dejamos tu grama pareja, verde y saludable.</p>
-                    <span class="service-price">Desde $25/servicio</span>
-                </div>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-img" style="background-image: url('https://kimi-web-img.moonshot.cn/img/www.greenwavs.com/1b290f2ae486ada881528b1a49e51743a82b263a.png')"></div>
-                <div class="service-content">
-                    <h3><i class="fas fa-seedling" style="color: var(--secondary); margin-right: 0.5rem;"></i>Diseño de Jardines</h3>
-                    <p>Creamos y diseñamos jardines hermosos y funcionales. Desde jardines pequeños hasta grandes paisajes.</p>
-                    <span class="service-price">Cotización gratis</span>
-                </div>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-img" style="background-image: url('https://kimi-web-img.moonshot.cn/img/dam.thdstatic.com/0fb5ba5c9264c2890bd0ced78e9606b5b889ef10.jpg')"></div>
-                <div class="service-content">
-                    <h3><i class="fas fa-tools" style="color: var(--secondary); margin-right: 0.5rem;"></i>Mantenimiento</h3>
-                    <p>Mantenimiento regular de jardines: poda, fertilización, control de plagas y riego automatizado.</p>
-                    <span class="service-price">Planes mensuales</span>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-terra-cream z-[60] hidden flex-col items-center justify-center gap-8">
+    <button id="closeMenu" class="absolute top-6 right-6 text-3xl text-terra-forest"><i class="fas fa-times"></i></button>
+    <a href="#services" class="text-2xl font-display font-medium text-terra-forest hover:text-terra-fern">Servicios</a>
+    <a href="#about" class="text-2xl font-display font-medium text-terra-forest hover:text-terra-fern">Nosotros</a>
+    <a href="#why-us" class="text-2xl font-display font-medium text-terra-forest hover:text-terra-fern">Por Qué Elegirnos</a>
+    <a href="#reviews" class="text-2xl font-display font-medium text-terra-forest hover:text-terra-fern">Reseñas</a>
+    <a href="#contact" class="btn-fern text-white px-8 py-3 rounded-full font-semibold text-lg mt-4">Pedir Cotización</a>
+  </div>
 
-    <!-- About -->
-    <section class="about" id="nosotros">
-        <div class="about-container">
-            <div class="about-img fade-in">
-                <img src="https://kimi-web-img.moonshot.cn/img/www.saundersls.com/962599dd4446a148288202cc826588419cc10e8d.jpg" alt="Jardín hermoso">
-            </div>
-            <div class="about-content fade-in">
-                <h2>Más de 10 Años Cuidando Jardines</h2>
-                <p>En VerdeVida nos apasiona transformar espacios exteriores. Somos un equipo de jardineros profesionales dedicados a brindar el mejor servicio de corte de grama y mantenimiento de jardines.</p>
-                <p>Utilizamos técnicas modernas y respetuosas con el medio ambiente para garantizar que tu jardín luzca espectacular durante todo el año.</p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <h3>500+</h3>
-                        <p>Jardines Atendidos</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>10+</h3>
-                        <p>Años de Experiencia</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>100%</h3>
-                        <p>Clientes Satisfechos</p>
-                    </div>
-                </div>
-            </div>
+  <!-- Hero -->
+  <section class="relative min-h-screen flex items-center pt-32 overflow-hidden">
+    <div class="absolute -right-32 top-20 w-[600px] h-[600px] bg-terra-mint/40 blob pointer-events-none"></div>
+    <div class="absolute -left-40 bottom-0 w-96 h-96 bg-terra-fern/10 blob-2 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-terra-fern/10 border border-terra-fern/30 rounded-full px-4 py-2 mb-6">
+          <span class="w-2 h-2 bg-terra-fern rounded-full animate-pulse"></span>
+          <span class="text-sm text-terra-moss font-medium">Sirviendo el área de Houston, TX</span>
         </div>
-    </section>
-
-    <!-- Gallery -->
-    <section class="gallery" id="galeria">
-        <div class="section-header fade-in">
-            <h2>Nuestros Trabajos</h2>
-            <p>Resultados reales de nuestros servicios de jardinería y corte de grama.</p>
+        <h1 class="font-display font-semibold text-5xl sm:text-6xl md:text-7xl leading-[1.05] mb-6">
+          Jardines que<br><span class="italic text-terra-fern">crecen</span> contigo
+        </h1>
+        <p class="text-lg text-terra-forest/70 mb-8 max-w-lg leading-relaxed">
+          Diseño, instalación y mantenimiento de espacios verdes. Cuidamos cada detalle, desde la primera semilla hasta el jardín que sueñas.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="btn-fern text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center gap-2">
+            <i class="fas fa-seedling"></i> Agendar Visita
+          </a>
+          <a href="tel:7135550142" class="border-2 border-terra-moss/30 hover:border-terra-fern px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-terra-mint/20 text-terra-forest">
+            <i class="fas fa-phone mr-2"></i> Llamar Ahora
+          </a>
         </div>
-        <div class="gallery-grid">
-            <div class="gallery-item fade-in">
-                <img src="https://kimi-web-img.moonshot.cn/img/interioforest.com/63b53f334bde508294bb2f529d4d2a988715d5ec.webp" alt="Jardín diseñado">
-                <div class="gallery-overlay">
-                    <h4>Diseño de Terraza</h4>
-                    <p>Jardín residencial completo</p>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="https://kimi-web-img.moonshot.cn/img/www.thegrassmaster.com/c401427d8ab0b671800613c6b0f0f48eb36d2848.jpeg" alt="Césped perfecto">
-                <div class="gallery-overlay">
-                    <h4>Corte de Césped</h4>
-                    <p>Acabado profesional</p>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="https://kimi-web-img.moonshot.cn/img/www.ugaoo.com/d6d5c8721478b50760231d0d8770b1bf728c32b1.jpg" alt="Sistema de riego">
-                <div class="gallery-overlay">
-                    <h4>Sistema de Riego</h4>
-                    <p>Instalación automatizada</p>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="https://kimi-web-img.moonshot.cn/img/hips.hearstapps.com/b88d0d52e03e124ff31a06b127f115360c3563e3.jpg" alt="Paisajismo">
-                <div class="gallery-overlay">
-                    <h4>Paisajismo</h4>
-                    <p>Diseño con arbustos</p>
-                </div>
-            </div>
+        <div class="flex items-center gap-6 mt-10 pt-8 border-t border-terra-100">
+          <div>
+            <p class="font-display font-semibold text-4xl text-terra-moss">15+</p>
+            <p class="text-sm text-terra-forest/60">Años de experiencia</p>
+          </div>
+          <div class="w-px h-12 bg-terra-100"></div>
+          <div>
+            <p class="font-display font-semibold text-4xl text-terra-moss">800+</p>
+            <p class="text-sm text-terra-forest/60">Jardines creados</p>
+          </div>
+          <div class="w-px h-12 bg-terra-100"></div>
+          <div>
+            <p class="font-display font-semibold text-4xl text-terra-moss">4.9</p>
+            <p class="text-sm text-terra-forest/60">Calificación</p>
+          </div>
         </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="section-header fade-in">
-            <h2>Lo Que Dicen Nuestros Clientes</h2>
-            <p>Testimonios de personas que confiaron en nosotros para cuidar sus jardines.</p>
+      </div>
+      <div class="relative">
+        <div class="blob overflow-hidden w-full h-[480px] shadow-xl">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un jardín con sendero de piedra">
+            <rect width="800" height="600" fill="#EFEBDD"/>
+            <circle cx="650" cy="120" r="70" fill="#F3D98B"/>
+            <path d="M0 380 Q200 320 400 370 T800 350 V600 H0 Z" fill="#B7E4C7"/>
+            <path d="M0 430 Q220 380 420 420 T800 410 V600 H0 Z" fill="#52B788"/>
+            <path d="M0 480 Q240 440 460 470 T800 460 V600 H0 Z" fill="#2D6A4F"/>
+            <g>
+              <rect x="90" y="330" width="10" height="50" fill="#6B4F3B"/>
+              <circle cx="95" cy="310" r="35" fill="#2D6A4F"/>
+              <circle cx="70" cy="330" r="25" fill="#52B788"/>
+              <circle cx="120" cy="330" r="25" fill="#52B788"/>
+            </g>
+            <g>
+              <rect x="620" y="360" width="10" height="45" fill="#6B4F3B"/>
+              <circle cx="625" cy="345" r="32" fill="#2D6A4F"/>
+              <circle cx="600" cy="360" r="22" fill="#52B788"/>
+              <circle cx="650" cy="360" r="22" fill="#52B788"/>
+            </g>
+            <g fill="#F8F6F1" opacity="0.9">
+              <ellipse cx="400" cy="580" rx="55" ry="18"/>
+              <ellipse cx="370" cy="530" rx="48" ry="16"/>
+              <ellipse cx="410" cy="480" rx="42" ry="14"/>
+              <ellipse cx="380" cy="435" rx="36" ry="12"/>
+              <ellipse cx="405" cy="395" rx="30" ry="10"/>
+            </g>
+            <g fill="#F3D98B">
+              <circle cx="250" cy="470" r="5"/>
+              <circle cx="270" cy="490" r="5"/>
+              <circle cx="540" cy="500" r="5"/>
+              <circle cx="560" cy="480" r="5"/>
+            </g>
+          </svg>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p>"Excelente servicio de corte de grama. Mi jardín nunca se había visto tan bien. El equipo es muy profesional y puntual."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">MR</div>
-                    <div class="author-info">
-                        <h4>María Rodríguez</h4>
-                        <span>Cliente Residencial</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p>"Contraté el plan de mantenimiento mensual y mi jardín está siempre impecable. Recomiendo totalmente sus servicios."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">CG</div>
-                    <div class="author-info">
-                        <h4>Carlos Gómez</h4>
-                        <span>Dueño de Restaurante</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <p>"Diseñaron el jardín de mis sueños. Desde la planificación hasta la ejecución, todo fue perfecto. Gran equipo."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">LP</div>
-                    <div class="author-info">
-                        <h4>Laura Pérez</h4>
-                        <span>Cliente Residencial</span>
-                    </div>
-                </div>
-            </div>
+        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-lg px-6 py-4 flex items-center gap-3">
+          <div class="w-12 h-12 bg-terra-mint rounded-full flex items-center justify-center">
+            <i class="fas fa-leaf text-terra-moss"></i>
+          </div>
+          <div>
+            <p class="font-display font-semibold text-lg leading-none">100% Orgánico</p>
+            <p class="text-xs text-terra-forest/60">Sin químicos agresivos</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section class="contact" id="contacto">
-        <div class="section-header fade-in">
-            <h2>Contáctanos</h2>
-            <p>Solicita una cotización gratis o agenda tu servicio de jardinería hoy mismo.</p>
+  <!-- Vine Divider -->
+  <div class="max-w-7xl mx-auto px-4">
+    <svg viewBox="0 0 1200 60" class="vine-divider" xmlns="http://www.w3.org/2000/svg">
+      <path class="vine-path" id="vinePath1" d="M0 30 Q 100 0, 200 30 T 400 30 T 600 30 T 800 30 T 1000 30 T 1200 30" stroke="#2D6A4F" stroke-width="2" fill="none"/>
+      <circle cx="150" cy="18" r="5" fill="#52B788"/>
+      <circle cx="450" cy="42" r="4" fill="#B7E4C7"/>
+      <circle cx="750" cy="18" r="5" fill="#52B788"/>
+      <circle cx="1050" cy="42" r="4" fill="#B7E4C7"/>
+    </svg>
+  </div>
+
+  <!-- Marquee -->
+  <div class="bg-terra-moss text-white py-4 overflow-hidden">
+    <div class="marquee-track flex items-center gap-16 whitespace-nowrap w-max font-display text-xl tracking-wide">
+      <span>DISEÑO DE JARDINES</span><span class="text-terra-fern">✽</span>
+      <span>CÉSPED Y PODA</span><span class="text-terra-fern">✽</span>
+      <span>RIEGO AUTOMÁTICO</span><span class="text-terra-fern">✽</span>
+      <span>PAISAJISMO</span><span class="text-terra-fern">✽</span>
+      <span>ÁRBOLES Y ARBUSTOS</span><span class="text-terra-fern">✽</span>
+      <span>LIMPIEZA DE TEMPORADA</span><span class="text-terra-fern">✽</span>
+      <span>DISEÑO DE JARDINES</span><span class="text-terra-fern">✽</span>
+      <span>CÉSPED Y PODA</span><span class="text-terra-fern">✽</span>
+      <span>RIEGO AUTOMÁTICO</span><span class="text-terra-fern">✽</span>
+      <span>PAISAJISMO</span><span class="text-terra-fern">✽</span>
+      <span>ÁRBOLES Y ARBUSTOS</span><span class="text-terra-fern">✽</span>
+      <span>LIMPIEZA DE TEMPORADA</span><span class="text-terra-fern">✽</span>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">LO QUE HACEMOS</p>
+        <h2 class="font-display font-semibold text-5xl sm:text-6xl">Nuestros <span class="italic text-terra-moss">Servicios</span></h2>
+        <p class="text-terra-forest/60 mt-4 max-w-xl mx-auto">Cuidado integral de exteriores, desde el mantenimiento semanal hasta proyectos completos de paisajismo.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-tree text-2xl text-terra-moss"></i>
+          </div>
+          <h3 class="font-display font-semibold text-2xl mb-2">Diseño de Jardines</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Planos personalizados según tu terreno, luz y estilo. Del boceto a la siembra.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $299</p>
         </div>
-        <div class="contact-container fade-in">
-            <div class="contact-info">
-                <h3>¿Listo para transformar tu jardín?</h3>
-                <p>Estamos aquí para ayudarte. Envíanos un mensaje y te responderemos en menos de 24 horas.</p>
-                <div class="contact-detail">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <strong>Teléfono</strong><br>
-                        +1 (555) 123-4567
-                    </div>
-                </div>
-                <div class="contact-detail">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>Email</strong><br>
-                        info@verdevida.com
-                    </div>
-                </div>
-                <div class="contact-detail">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <strong>Dirección</strong><br>
-                        Av. Jardines 123, Ciudad Verde
-                    </div>
-                </div>
-                <div class="contact-detail">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <strong>Horario</strong><br>
-                        Lun - Sáb: 7:00 AM - 6:00 PM
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form">
-                <form onsubmit="event.preventDefault(); alert('¡Gracias por tu mensaje! Te contactaremos pronto.');">
-                    <div class="form-group">
-                        <label for="name">Nombre completo</label>
-                        <input type="text" id="name" placeholder="Tu nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" placeholder="tu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Teléfono</label>
-                        <input type="tel" id="phone" placeholder="Tu número de teléfono">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Servicio de interés</label>
-                        <select id="service" required>
-                            <option value="">Selecciona un servicio</option>
-                            <option value="corte">Corte de Grama</option>
-                            <option value="diseno">Diseño de Jardines</option>
-                            <option value="mantenimiento">Mantenimiento Mensual</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mensaje</label>
-                        <textarea id="message" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">
-                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                    </button>
-                </form>
-            </div>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-cut text-2xl text-terra-moss"></i>
+          </div>
+          <h3 class="font-display font-semibold text-2xl mb-2">Césped y Poda</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Corte, bordeado y fertilización regular para un césped siempre saludable.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $49/visita</p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo">
-                    <i class="fas fa-leaf"></i>
-                    VerdeVida
-                </div>
-                <p>Transformando espacios verdes desde 2014. Tu jardín en las mejores manos profesionales.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h4>Servicios</h4>
-                <ul>
-                    <li><a href="#">Corte de Grama</a></li>
-                    <li><a href="#">Diseño de Jardines</a></li>
-                    <li><a href="#">Mantenimiento</a></li>
-                    <li><a href="#">Poda de Árboles</a></li>
-                    <li><a href="#">Riego Automatizado</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Empresa</h4>
-                <ul>
-                    <li><a href="#">Sobre Nosotros</a></li>
-                    <li><a href="#">Galería</a></li>
-                    <li><a href="#">Testimonios</a></li>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Términos de Servicio</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Garantía</a></li>
-                </ul>
-            </div>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-tint text-2xl text-terra-moss"></i>
+          </div>
+          <h3 class="font-display font-semibold text-2xl mb-2">Riego Automático</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Instalación y mantenimiento de sistemas de riego eficientes que ahorran agua.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $199</p>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 VerdeVida Jardinería. Todos los derechos reservados.</p>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-mountain text-2xl text-terra-moss"></i>
+          </div>
+          <h3 class="font-display font-semibold text-2xl mb-2">Hardscaping</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Senderos, terrazas y muros de piedra que le dan estructura a tu jardín.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $499</p>
         </div>
-    </footer>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-spa text-2xl text-terra-moss"></i>
+          </div>
+          <h3 class="font-display font-semibold text-2xl mb-2">Árboles y Arbustos</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Poda formativa, control de plagas y trasplante seguro para tu vegetación.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $79</p>
+        </div>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-broom text-2xl text-terra-moss"></i>
+          </div>
+          <h3 class="font-display font-semibold text-2xl mb-2">Limpieza de Temporada</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Preparamos tu jardín para cada estación: hojas, ramas y renovación de suelo.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Visita gratis</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+  <!-- Gallery -->
+  <section class="py-20 bg-terra-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 reveal">
+        <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">NUESTRO TRABAJO</p>
+        <h2 class="font-display font-semibold text-4xl sm:text-5xl">Proyectos en <span class="italic text-terra-moss">Houston</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="rounded-2xl overflow-hidden h-72 reveal relative group">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un sistema de riego automático">
+            <rect width="800" height="600" fill="#EFEBDD"/>
+            <rect x="0" y="420" width="800" height="180" fill="#52B788"/>
+            <rect x="0" y="460" width="800" height="140" fill="#2D6A4F"/>
+            <rect x="390" y="440" width="20" height="60" fill="#173A2C"/>
+            <circle cx="400" cy="430" r="14" fill="#173A2C"/>
+            <g stroke="#F8F6F1" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9">
+              <path d="M400 430 Q320 350 250 400"/>
+              <path d="M400 430 Q480 350 550 400"/>
+              <path d="M400 430 Q400 300 400 250"/>
+              <path d="M400 430 Q340 380 300 430"/>
+              <path d="M400 430 Q460 380 500 430"/>
+            </g>
+            <g fill="#F8F6F1" opacity="0.9">
+              <circle cx="250" cy="400" r="5"/>
+              <circle cx="550" cy="400" r="5"/>
+              <circle cx="400" cy="250" r="5"/>
+              <circle cx="300" cy="430" r="5"/>
+              <circle cx="500" cy="430" r="5"/>
+            </g>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-terra-forest/70 via-transparent to-transparent flex items-end p-5">
+            <p class="text-white font-display font-semibold text-lg">Riego Automático</p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden h-72 reveal relative group">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un jardinero podando un seto">
+            <rect width="800" height="600" fill="#F7F5EE"/>
+            <rect x="0" y="480" width="800" height="120" fill="#52B788"/>
+            <path d="M100 480 Q100 380 250 380 Q400 380 400 480 Z" fill="#2D6A4F"/>
+            <path d="M420 480 Q420 400 550 400 Q680 400 680 480 Z" fill="#2D6A4F"/>
+            <circle cx="330" cy="360" r="24" fill="#F8F6F1"/>
+            <rect x="308" y="382" width="44" height="80" rx="16" fill="#173A2C"/>
+            <rect x="316" y="460" width="12" height="55" fill="#6B4F3B"/>
+            <rect x="336" y="460" width="12" height="55" fill="#6B4F3B"/>
+            <rect x="352" y="400" width="70" height="14" rx="6" fill="#52B788" transform="rotate(-15 352 400)"/>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-terra-forest/70 via-transparent to-transparent flex items-end p-5">
+            <p class="text-white font-display font-semibold text-lg">Poda y Diseño</p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden h-72 reveal relative group sm:col-span-2 lg:col-span-1">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un sendero de piedra rodeado de arbustos">
+            <rect width="800" height="600" fill="#EFEBDD"/>
+            <rect x="0" y="0" width="800" height="350" fill="#B7E4C7"/>
+            <rect x="0" y="350" width="800" height="250" fill="#52B788"/>
+            <g fill="#F8F6F1">
+              <ellipse cx="400" cy="560" rx="70" ry="24"/>
+              <ellipse cx="340" cy="500" rx="60" ry="20"/>
+              <ellipse cx="440" cy="450" rx="55" ry="18"/>
+              <ellipse cx="380" cy="400" rx="48" ry="16"/>
+              <ellipse cx="420" cy="360" rx="40" ry="14"/>
+            </g>
+            <g fill="#2D6A4F">
+              <circle cx="200" cy="480" r="35"/>
+              <circle cx="600" cy="460" r="38"/>
+              <circle cx="230" cy="400" r="26"/>
+              <circle cx="570" cy="380" r="28"/>
+            </g>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-terra-forest/70 via-transparent to-transparent flex items-end p-5">
+            <p class="text-white font-display font-semibold text-lg">Hardscaping</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <!-- About -->
+  <section id="about" class="py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative reveal">
+          <div class="blob-2 overflow-hidden w-full h-[500px]">
+            <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de jardineros trabajando con una carretilla">
+              <rect width="800" height="600" fill="#F7F5EE"/>
+              <path d="M0 420 Q200 380 400 410 T800 400 V600 H0 Z" fill="#B7E4C7"/>
+              <path d="M0 470 Q220 440 440 460 T800 450 V600 H0 Z" fill="#52B788"/>
+              <g>
+                <circle cx="300" cy="500" r="22" fill="none" stroke="#173A2C" stroke-width="6"/>
+                <path d="M270 460 L400 460 L380 500 L280 500 Z" fill="#2D6A4F"/>
+                <line x1="300" y1="500" x2="230" y2="470" stroke="#6B4F3B" stroke-width="6"/>
+                <line x1="230" y1="470" x2="200" y2="440" stroke="#6B4F3B" stroke-width="6"/>
+              </g>
+              <g>
+                <circle cx="480" cy="360" r="26" fill="#F8F6F1"/>
+                <rect x="455" y="385" width="50" height="90" rx="20" fill="#2D6A4F"/>
+                <rect x="465" y="470" width="14" height="60" fill="#173A2C"/>
+                <rect x="490" y="470" width="14" height="60" fill="#173A2C"/>
+              </g>
+              <g>
+                <circle cx="580" cy="345" r="24" fill="#F8F6F1"/>
+                <rect x="558" y="368" width="46" height="85" rx="18" fill="#52B788"/>
+                <rect x="566" y="450" width="13" height="58" fill="#173A2C"/>
+                <rect x="588" y="450" width="13" height="58" fill="#173A2C"/>
+                <line x1="604" y1="390" x2="640" y2="360" stroke="#6B4F3B" stroke-width="6" stroke-linecap="round"/>
+              </g>
+              <g fill="#2D6A4F">
+                <circle cx="120" cy="500" r="20"/>
+                <circle cx="150" cy="510" r="16"/>
+                <circle cx="680" cy="510" r="22"/>
+                <circle cx="710" cy="500" r="18"/>
+              </g>
+            </svg>
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-terra-moss text-white p-6 rounded-2xl shadow-lg">
+            <p class="font-display font-semibold text-5xl">15+</p>
+            <p class="text-sm">años cuidando<br>jardines con cariño</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">SOBRE TERRA VERDE</p>
+          <h2 class="font-display font-semibold text-5xl sm:text-6xl mb-6">Crecemos con <span class="italic text-terra-moss">paciencia</span> y cuidado</h2>
+          <p class="text-terra-forest/70 leading-relaxed mb-6">
+            Terra Verde nació de una pasión simple: hacer que cada patio se sienta como un lugar al que quieres volver. Sin atajos, sin plantas que no sobreviven el primer mes, solo trabajo honesto y bien hecho.
+          </p>
+          <p class="text-terra-forest/70 leading-relaxed mb-8">
+            Nuestro equipo de jardineros certificados conoce el clima y suelo de la zona como la palma de su mano. Te explicamos cada recomendación en palabras simples y siempre pedimos tu aprobación antes de empezar.
+          </p>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-certificate text-terra-moss"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Jardineros Certificados</h4>
+                <p class="text-sm text-terra-forest/50">Formación continua en horticultura</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-shield-alt text-terra-moss"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Garantía de 1 Año</h4>
+                <p class="text-sm text-terra-forest/50">En plantas e instalaciones</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-dollar-sign text-terra-moss"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Precios Claros</h4>
+                <p class="text-sm text-terra-forest/50">Cotizaciones sin sorpresas</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-water text-terra-moss"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Uso Responsable del Agua</h4>
+                <p class="text-sm text-terra-forest/50">Diseños pensados para ahorrar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+  <!-- Why Choose Us -->
+  <section id="why-us" class="py-24 bg-terra-forest text-white relative overflow-hidden">
+    <div class="absolute -right-24 -top-24 w-72 h-72 bg-terra-moss/40 blob pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
+      <div class="text-center mb-16 reveal">
+        <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">LA DIFERENCIA TERRA VERDE</p>
+        <h2 class="font-display font-semibold text-5xl sm:text-6xl">Por qué confían <span class="italic text-terra-mint">en nosotros</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-clipboard-list text-3xl text-terra-fern"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl mb-2">Evaluación Gratis</h3>
+          <p class="text-terra-mint/70 text-sm">Visitamos tu terreno y te damos un plan claro antes de cobrar nada.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-handshake text-3xl text-terra-fern"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl mb-2">Sin Presión</h3>
+          <p class="text-terra-mint/70 text-sm">Te damos opciones honestas y tú decides el ritmo del proyecto.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-camera text-3xl text-terra-fern"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl mb-2">Seguimiento con Fotos</h3>
+          <p class="text-terra-mint/70 text-sm">Ves el avance de tu jardín en tu teléfono, semana a semana.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-calendar-check text-3xl text-terra-fern"></i>
+          </div>
+          <h3 class="font-display font-semibold text-xl mb-2">Visitas Recurrentes</h3>
+          <p class="text-terra-mint/70 text-sm">Planes de mantenimiento flexibles, semanales o mensuales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  <!-- Reviews -->
+  <section id="reviews" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 reveal">
+        <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">TESTIMONIOS</p>
+        <h2 class="font-display font-semibold text-5xl sm:text-6xl">Lo que dicen <span class="italic text-terra-moss">nuestros clientes</span></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-terra-cream border border-terra-100 rounded-2xl p-8 reveal">
+          <div class="flex text-terra-fern mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-terra-forest/70 mb-6 leading-relaxed">"Transformaron un patio de tierra en un jardín precioso en tres semanas. Nos explicaron cada planta y por qué la eligieron para nuestro clima."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-terra-moss rounded-full flex items-center justify-center font-bold text-white">MR</div>
+            <div>
+              <p class="font-semibold">Marisol Reyes</p>
+              <p class="text-sm text-terra-forest/50">Diseño de jardín completo</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-terra-cream border border-terra-100 rounded-2xl p-8 reveal">
+          <div class="flex text-terra-fern mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-terra-forest/70 mb-6 leading-relaxed">"El sistema de riego que instalaron nos bajó el consumo de agua a la mitad. Además el césped nunca se había visto tan verde."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-terra-moss rounded-full flex items-center justify-center font-bold text-white">SL</div>
+            <div>
+              <p class="font-semibold">Samuel López</p>
+              <p class="text-sm text-terra-forest/50">Riego automático</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-terra-cream border border-terra-100 rounded-2xl p-8 reveal">
+          <div class="flex text-terra-fern mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-terra-forest/70 mb-6 leading-relaxed">"Tenemos el plan de mantenimiento mensual desde hace dos años. Siempre puntuales y el jardín se mantiene impecable todo el año."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-terra-moss rounded-full flex items-center justify-center font-bold text-white">JT</div>
+            <div>
+              <p class="font-semibold">Julia Torres</p>
+              <p class="text-sm text-terra-forest/50">Mantenimiento mensual</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            }
-        });
-    </script>
+  <!-- CTA -->
+  <section class="py-24 bg-terra-mint/30 relative overflow-hidden">
+    <div class="absolute -left-20 top-1/2 -translate-y-1/2 w-72 h-72 bg-terra-fern/20 blob pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative reveal">
+      <h2 class="font-display font-semibold text-5xl sm:text-6xl md:text-7xl mb-6">El jardín que imaginas<br>empieza con una <span class="italic text-terra-moss">visita</span></h2>
+      <p class="text-xl text-terra-forest/70 mb-8 max-w-2xl mx-auto">Agenda tu evaluación gratuita y te llevamos un plan a la medida de tu espacio y presupuesto.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#contact" class="btn-fern text-white px-10 py-5 rounded-full font-bold text-xl inline-flex items-center gap-3">
+          <i class="fas fa-seedling"></i> Reservar Visita
+        </a>
+      </div>
+      <p class="text-terra-forest/50 mt-6 text-sm"><i class="fas fa-check-circle text-terra-fern mr-1"></i> Evaluación de suelo incluida en cada visita</p>
+    </div>
+  </section>
 
+  <!-- Contact -->
+  <section id="contact" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div class="reveal">
+          <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">CONTÁCTANOS</p>
+          <h2 class="font-display font-semibold text-5xl sm:text-6xl mb-6">Agenda tu <span class="italic text-terra-moss">visita</span></h2>
+          <p class="text-terra-forest/60 mb-8 leading-relaxed">Llena el formulario y te contactamos en menos de 30 minutos en horario laboral para confirmar tu cita.</p>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-map-marker-alt text-terra-moss"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Visítanos</h4>
+                <p class="text-terra-forest/60">4820 Main Street<br>Houston, TX 77002</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-phone text-terra-moss"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Llámanos</h4>
+                <p class="text-terra-forest/60">(713) 555-0142</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-envelope text-terra-moss"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold">Email</h4>
+                <p class="text-terra-forest/60">hola@terraverdehouston.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <h4 class="font-display font-semibold text-xl mb-4">Horario</h4>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between border-b border-terra-100 pb-2"><span>Lunes - Viernes</span><span class="text-terra-forest/60">7:00 AM - 6:00 PM</span></div>
+              <div class="flex justify-between border-b border-terra-100 pb-2"><span>Sábado</span><span class="text-terra-forest/60">8:00 AM - 2:00 PM</span></div>
+              <div class="flex justify-between"><span>Domingo</span><span class="text-terra-fern">Cerrado</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-terra-cream border border-terra-100 rounded-2xl p-8 reveal">
+          <form id="bookingForm">
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-sm font-medium mb-2">Nombre</label>
+                <input type="text" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors" placeholder="Ana">
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Apellido</label>
+                <input type="text" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors" placeholder="Martínez">
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Teléfono</label>
+              <input type="tel" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors" placeholder="(713) 555-0198">
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Tamaño aproximado del jardín</label>
+              <input type="text" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors" placeholder="Ej. 150 m²">
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Servicio deseado</label>
+              <select required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors">
+                <option value="">Selecciona un servicio...</option>
+                <option>Diseño de Jardines</option>
+                <option>Césped y Poda</option>
+                <option>Riego Automático</option>
+                <option>Hardscaping</option>
+                <option>Árboles y Arbustos</option>
+                <option>Limpieza de Temporada</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-2">Fecha preferida</label>
+              <input type="date" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors">
+            </div>
+            <button type="submit" class="btn-fern w-full text-white py-4 rounded-full font-bold text-lg">
+              <i class="fas fa-seedling mr-2"></i> Solicitar Cita
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-terra-forest text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 text-terra-fern" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 90C50 90 20 75 20 45C20 25 35 10 50 10C65 10 80 25 80 45C80 75 50 90 50 90Z" stroke="currentColor" stroke-width="5"/>
+            <path d="M50 90V30" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <span class="font-display font-semibold text-xl">Terra <span class="text-terra-fern">Verde</span></span>
+            <p class="text-[10px] tracking-[0.3em] text-terra-mint/60">PAISAJISMO</p>
+          </div>
+        </div>
+        <p class="text-terra-mint/50 text-sm">2026 Terra Verde Paisajismo · Houston, TX. Todos los derechos reservados.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-terra-fern transition-colors"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-terra-fern transition-colors"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-terra-fern transition-colors"><i class="fab fa-google"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Vine divider draw-on-load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('vinePath1').classList.add('drawn');
+      }, 300);
+    });
+
+    // Form
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('¡Gracias! Te llamaremos en los próximos 30 minutos para confirmar tu cita.');
+      this.reset();
+    });
+
+    // Navbar shadow on scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('shadow-md');
+      } else {
+        navbar.classList.remove('shadow-md');
+      }
+    });
+  </script>
 </body>
 </html>
