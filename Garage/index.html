@@ -1,245 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GaragePro Auto Repair | Expert Mechanics You Can Trust</title>
+  <title>Terra Verde Paisajismo | Diseño y Cuidado de Jardines en Houston, TX</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            garage: {
-              900: '#0f0f0f',
-              800: '#1a1a1a',
-              700: '#262626',
-              600: '#404040',
-              500: '#525252',
-              red: '#dc2626',
-              redDark: '#b91c1c',
-              redLight: '#ef4444',
+            terra: {
+              50: '#F7F5EE',
+              100: '#EFEBDD',
+              cream: '#F8F6F1',
+              forest: '#173A2C',
+              moss: '#2D6A4F',
+              fern: '#52B788',
+              mint: '#B7E4C7',
+              bark: '#6B4F3B',
             }
           },
           fontFamily: {
-            bebas: ['Bebas Neue', 'cursive'],
-            inter: ['Inter', 'sans-serif'],
+            display: ['Fraunces', 'serif'],
+            body: ['Work Sans', 'sans-serif'],
           }
         }
       }
     }
   </script>
   <style>
-    .diagonal-clip { clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); }
-    .diagonal-clip-reverse { clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); }
-    .text-shadow-glow { text-shadow: 0 0 40px rgba(220, 38, 38, 0.4); }
-    .gear-spin { animation: spin 20s linear infinite; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .marquee-track { animation: marquee 30s linear infinite; }
+    .blob { border-radius: 62% 38% 55% 45% / 45% 55% 45% 55%; }
+    .blob-2 { border-radius: 42% 58% 65% 35% / 55% 40% 60% 45%; }
+    .vine-divider { display: block; width: 100%; height: auto; }
+    .vine-path { stroke-dasharray: 1400; stroke-dashoffset: 1400; transition: stroke-dashoffset 1.6s ease; }
+    .vine-path.drawn { stroke-dashoffset: 0; }
+    .leaf-sway { animation: sway 6s ease-in-out infinite; transform-origin: bottom center; }
+    @keyframes sway { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+    .marquee-track { animation: marquee 32s linear infinite; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .service-card:hover .service-icon { transform: scale(1.15) rotate(5deg); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(.22,1,.36,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .btn-red {
-      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    .service-card:hover .service-icon { transform: scale(1.1) rotate(-4deg); }
+    .btn-fern {
+      background: linear-gradient(135deg, #2D6A4F 0%, #173A2C 100%);
       transition: all 0.3s ease;
     }
-    .btn-red:hover {
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    .btn-fern:hover {
+      background: linear-gradient(135deg, #52B788 0%, #2D6A4F 100%);
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+      box-shadow: 0 12px 28px rgba(45, 106, 79, 0.35);
+    }
+    .text-outline {
+      -webkit-text-stroke: 1.5px #2D6A4F;
+      color: transparent;
     }
   </style>
 </head>
-<body class="font-inter bg-garage-900 text-white antialiased">
+<body class="font-body bg-terra-cream text-terra-forest antialiased">
 
   <!-- Top Bar -->
-  <div class="bg-garage-red text-white py-2 px-4">
+  <div class="bg-terra-forest text-terra-mint py-2 px-4">
     <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
       <div class="flex items-center gap-4">
-        <span><i class="fas fa-phone mr-1"></i> (555) 234-5678</span>
-        <span class="hidden sm:inline"><i class="fas fa-clock mr-1"></i> Mon-Sat: 7AM - 7PM</span>
+        <span><i class="fas fa-phone mr-1"></i> (713) 555-0142</span>
+        <span class="hidden sm:inline"><i class="fas fa-clock mr-1"></i> Lun-Sáb: 7AM - 6PM</span>
       </div>
-      <span class="font-medium">FREE DIAGNOSTIC WITH ANY SERVICE</span>
+      <span class="font-medium">CONSULTA DE DISEÑO GRATIS</span>
     </div>
   </div>
 
   <!-- Navigation -->
-  <nav id="navbar" class="fixed w-full top-8 z-50 transition-all duration-300 bg-garage-900/95 backdrop-blur-md border-b border-garage-700">
+  <nav id="navbar" class="fixed w-full top-8 z-50 transition-all duration-300 bg-terra-cream/90 backdrop-blur-md border-b border-terra-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
       <a href="#" class="flex items-center gap-3">
-        <svg class="w-10 h-10 text-garage-red" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="6"/>
-          <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="4" stroke-dasharray="8 6"/>
-          <circle cx="50" cy="50" r="8" fill="currentColor"/>
+        <svg class="w-10 h-10 text-terra-moss leaf-sway" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 90C50 90 20 75 20 45C20 25 35 10 50 10C65 10 80 25 80 45C80 75 50 90 50 90Z" stroke="currentColor" stroke-width="5"/>
+          <path d="M50 90V30" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
         </svg>
         <div>
-          <span class="font-bebas text-2xl tracking-wider">GARAGE<span class="text-garage-red">PRO</span></span>
-          <p class="text-[10px] tracking-[0.3em] text-garage-500 -mt-1">AUTO REPAIR</p>
+          <span class="font-display font-semibold text-2xl tracking-tight">Terra <span class="text-terra-fern">Verde</span></span>
+          <p class="text-[10px] tracking-[0.3em] text-terra-bark -mt-1">PAISAJISMO</p>
         </div>
       </a>
       <div class="hidden md:flex items-center gap-8">
-        <a href="#services" class="text-sm font-medium text-gray-300 hover:text-garage-redLight transition-colors">Services</a>
-        <a href="#about" class="text-sm font-medium text-gray-300 hover:text-garage-redLight transition-colors">About</a>
-        <a href="#why-us" class="text-sm font-medium text-gray-300 hover:text-garage-redLight transition-colors">Why Us</a>
-        <a href="#reviews" class="text-sm font-medium text-gray-300 hover:text-garage-redLight transition-colors">Reviews</a>
-        <a href="#contact" class="btn-red px-6 py-2.5 rounded font-semibold text-sm">Book Now</a>
+        <a href="#services" class="text-sm font-medium text-terra-forest/80 hover:text-terra-fern transition-colors">Servicios</a>
+        <a href="#about" class="text-sm font-medium text-terra-forest/80 hover:text-terra-fern transition-colors">Nosotros</a>
+        <a href="#why-us" class="text-sm font-medium text-terra-forest/80 hover:text-terra-fern transition-colors">Por Qué Elegirnos</a>
+        <a href="#reviews" class="text-sm font-medium text-terra-forest/80 hover:text-terra-fern transition-colors">Reseñas</a>
+        <a href="#contact" class="btn-fern text-white px-6 py-2.5 rounded-full font-semibold text-sm">Pedir Cotización</a>
       </div>
-      <button id="menuBtn" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+      <button id="menuBtn" class="md:hidden text-2xl text-terra-forest"><i class="fas fa-bars"></i></button>
     </div>
   </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobileMenu" class="fixed inset-0 bg-garage-900/98 z-[60] hidden flex-col items-center justify-center gap-8">
-    <button id="closeMenu" class="absolute top-6 right-6 text-3xl text-white"><i class="fas fa-times"></i></button>
-    <a href="#services" class="text-2xl font-bebas tracking-wider text-white hover:text-garage-redLight">Services</a>
-    <a href="#about" class="text-2xl font-bebas tracking-wider text-white hover:text-garage-redLight">About</a>
-    <a href="#why-us" class="text-2xl font-bebas tracking-wider text-white hover:text-garage-redLight">Why Us</a>
-    <a href="#reviews" class="text-2xl font-bebas tracking-wider text-white hover:text-garage-redLight">Reviews</a>
-    <a href="#contact" class="btn-red px-8 py-3 rounded font-semibold text-lg mt-4">Book Now</a>
+  <div id="mobileMenu" class="fixed inset-0 bg-terra-cream z-[60] hidden flex-col items-center justify-center gap-8">
+    <button id="closeMenu" class="absolute top-6 right-6 text-3xl text-terra-forest"><i class="fas fa-times"></i></button>
+    <a href="#services" class="text-2xl font-display font-medium text-terra-forest hover:text-terra-fern">Servicios</a>
+    <a href="#about" class="text-2xl font-display font-medium text-terra-forest hover:text-terra-fern">Nosotros</a>
+    <a href="#why-us" class="text-2xl font-display font-medium text-terra-forest hover:text-terra-fern">Por Qué Elegirnos</a>
+    <a href="#reviews" class="text-2xl font-display font-medium text-terra-forest hover:text-terra-fern">Reseñas</a>
+    <a href="#contact" class="btn-fern text-white px-8 py-3 rounded-full font-semibold text-lg mt-4">Pedir Cotización</a>
   </div>
 
   <!-- Hero -->
   <section class="relative min-h-screen flex items-center pt-32 overflow-hidden">
-    <div class="absolute inset-0">
-      <img src="images/hero.jpg" alt="Auto repair shop" class="w-full h-full object-cover opacity-40">
-      <div class="absolute inset-0 bg-gradient-to-r from-garage-900 via-garage-900/80 to-transparent"></div>
-    </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-20">
-      <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-2 bg-garage-red/20 border border-garage-red/40 rounded-full px-4 py-2 mb-6">
-          <span class="w-2 h-2 bg-garage-redLight rounded-full animate-pulse"></span>
-          <span class="text-sm text-garage-redLight font-medium">Open Now — Walk-Ins Welcome</span>
+    <div class="absolute -right-32 top-20 w-[600px] h-[600px] bg-terra-mint/40 blob pointer-events-none"></div>
+    <div class="absolute -left-40 bottom-0 w-96 h-96 bg-terra-fern/10 blob-2 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-terra-fern/10 border border-terra-fern/30 rounded-full px-4 py-2 mb-6">
+          <span class="w-2 h-2 bg-terra-fern rounded-full animate-pulse"></span>
+          <span class="text-sm text-terra-moss font-medium">Sirviendo el área de Houston, TX</span>
         </div>
-        <h1 class="font-bebas text-6xl sm:text-7xl md:text-8xl leading-none mb-6">
-          WE FIX<br><span class="text-garage-red text-shadow-glow">EVERYTHING</span><br>WITH AN ENGINE
+        <h1 class="font-display font-semibold text-5xl sm:text-6xl md:text-7xl leading-[1.05] mb-6">
+          Jardines que<br><span class="italic text-terra-fern">crecen</span> contigo
         </h1>
-        <p class="text-lg sm:text-xl text-gray-400 mb-8 max-w-lg leading-relaxed">
-          From oil changes to complete engine rebuilds. Honest mechanics, fair prices, and a 2-year warranty on all repairs.
+        <p class="text-lg text-terra-forest/70 mb-8 max-w-lg leading-relaxed">
+          Diseño, instalación y mantenimiento de espacios verdes. Cuidamos cada detalle, desde la primera semilla hasta el jardín que sueñas.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="#contact" class="btn-red px-8 py-4 rounded-lg font-bold text-lg inline-flex items-center gap-2">
-            <i class="fas fa-calendar-check"></i> Schedule Service
+          <a href="#contact" class="btn-fern text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center gap-2">
+            <i class="fas fa-seedling"></i> Agendar Visita
           </a>
-          <a href="tel:5552345678" class="border-2 border-garage-600 hover:border-garage-redLight px-8 py-4 rounded-lg font-bold text-lg transition-all hover:bg-garage-800">
-            <i class="fas fa-phone mr-2"></i> Call Now
+          <a href="tel:7135550142" class="border-2 border-terra-moss/30 hover:border-terra-fern px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-terra-mint/20 text-terra-forest">
+            <i class="fas fa-phone mr-2"></i> Llamar Ahora
           </a>
         </div>
-        <div class="flex items-center gap-6 mt-10 pt-8 border-t border-garage-700">
+        <div class="flex items-center gap-6 mt-10 pt-8 border-t border-terra-100">
           <div>
-            <p class="font-bebas text-4xl text-garage-redLight">15+</p>
-            <p class="text-sm text-gray-500">Years Experience</p>
+            <p class="font-display font-semibold text-4xl text-terra-moss">15+</p>
+            <p class="text-sm text-terra-forest/60">Años de experiencia</p>
           </div>
-          <div class="w-px h-12 bg-garage-700"></div>
+          <div class="w-px h-12 bg-terra-100"></div>
           <div>
-            <p class="font-bebas text-4xl text-garage-redLight">5,000+</p>
-            <p class="text-sm text-gray-500">Cars Repaired</p>
+            <p class="font-display font-semibold text-4xl text-terra-moss">800+</p>
+            <p class="text-sm text-terra-forest/60">Jardines creados</p>
           </div>
-          <div class="w-px h-12 bg-garage-700"></div>
+          <div class="w-px h-12 bg-terra-100"></div>
           <div>
-            <p class="font-bebas text-4xl text-garage-redLight">4.9</p>
-            <p class="text-sm text-gray-500">Star Rating</p>
+            <p class="font-display font-semibold text-4xl text-terra-moss">4.9</p>
+            <p class="text-sm text-terra-forest/60">Calificación</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="blob overflow-hidden w-full h-[480px] shadow-xl">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un jardín con sendero de piedra">
+            <rect width="800" height="600" fill="#EFEBDD"/>
+            <circle cx="650" cy="120" r="70" fill="#F3D98B"/>
+            <path d="M0 380 Q200 320 400 370 T800 350 V600 H0 Z" fill="#B7E4C7"/>
+            <path d="M0 430 Q220 380 420 420 T800 410 V600 H0 Z" fill="#52B788"/>
+            <path d="M0 480 Q240 440 460 470 T800 460 V600 H0 Z" fill="#2D6A4F"/>
+            <g>
+              <rect x="90" y="330" width="10" height="50" fill="#6B4F3B"/>
+              <circle cx="95" cy="310" r="35" fill="#2D6A4F"/>
+              <circle cx="70" cy="330" r="25" fill="#52B788"/>
+              <circle cx="120" cy="330" r="25" fill="#52B788"/>
+            </g>
+            <g>
+              <rect x="620" y="360" width="10" height="45" fill="#6B4F3B"/>
+              <circle cx="625" cy="345" r="32" fill="#2D6A4F"/>
+              <circle cx="600" cy="360" r="22" fill="#52B788"/>
+              <circle cx="650" cy="360" r="22" fill="#52B788"/>
+            </g>
+            <g fill="#F8F6F1" opacity="0.9">
+              <ellipse cx="400" cy="580" rx="55" ry="18"/>
+              <ellipse cx="370" cy="530" rx="48" ry="16"/>
+              <ellipse cx="410" cy="480" rx="42" ry="14"/>
+              <ellipse cx="380" cy="435" rx="36" ry="12"/>
+              <ellipse cx="405" cy="395" rx="30" ry="10"/>
+            </g>
+            <g fill="#F3D98B">
+              <circle cx="250" cy="470" r="5"/>
+              <circle cx="270" cy="490" r="5"/>
+              <circle cx="540" cy="500" r="5"/>
+              <circle cx="560" cy="480" r="5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-lg px-6 py-4 flex items-center gap-3">
+          <div class="w-12 h-12 bg-terra-mint rounded-full flex items-center justify-center">
+            <i class="fas fa-leaf text-terra-moss"></i>
+          </div>
+          <div>
+            <p class="font-display font-semibold text-lg leading-none">100% Orgánico</p>
+            <p class="text-xs text-terra-forest/60">Sin químicos agresivos</p>
           </div>
         </div>
       </div>
     </div>
-    <!-- Decorative gear -->
-    <svg class="absolute -right-20 -bottom-20 w-96 h-96 text-garage-800 gear-spin opacity-30 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 15V5M50 95v-10M85 50h10M5 50h10M75.98 24.02l7.07-7.07M17.95 82.05l7.07-7.07M75.98 75.98l7.07 7.07M17.95 17.95l7.07 7.07" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-width="4"/>
-      <circle cx="50" cy="50" r="12" stroke="currentColor" stroke-width="3"/>
-    </svg>
   </section>
 
-  <!-- Marquee Brands -->
-  <div class="bg-garage-red py-4 overflow-hidden">
-    <div class="marquee-track flex items-center gap-16 whitespace-nowrap w-max">
-      <span class="font-bebas text-xl tracking-widest">TOYOTA</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">HONDA</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">FORD</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">CHEVROLET</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">BMW</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">MERCEDES</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">AUDI</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">NISSAN</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">HYUNDAI</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">KIA</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">VOLKSWAGEN</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">SUBARU</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">TOYOTA</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">HONDA</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">FORD</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">CHEVROLET</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">BMW</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">MERCEDES</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">AUDI</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">NISSAN</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">HYUNDAI</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">KIA</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">VOLKSWAGEN</span><span class="text-garage-900">/</span>
-      <span class="font-bebas text-xl tracking-widest">SUBARU</span><span class="text-garage-900">/</span>
+  <!-- Vine Divider -->
+  <div class="max-w-7xl mx-auto px-4">
+    <svg viewBox="0 0 1200 60" class="vine-divider" xmlns="http://www.w3.org/2000/svg">
+      <path class="vine-path" id="vinePath1" d="M0 30 Q 100 0, 200 30 T 400 30 T 600 30 T 800 30 T 1000 30 T 1200 30" stroke="#2D6A4F" stroke-width="2" fill="none"/>
+      <circle cx="150" cy="18" r="5" fill="#52B788"/>
+      <circle cx="450" cy="42" r="4" fill="#B7E4C7"/>
+      <circle cx="750" cy="18" r="5" fill="#52B788"/>
+      <circle cx="1050" cy="42" r="4" fill="#B7E4C7"/>
+    </svg>
+  </div>
+
+  <!-- Marquee -->
+  <div class="bg-terra-moss text-white py-4 overflow-hidden">
+    <div class="marquee-track flex items-center gap-16 whitespace-nowrap w-max font-display text-xl tracking-wide">
+      <span>DISEÑO DE JARDINES</span><span class="text-terra-fern">✽</span>
+      <span>CÉSPED Y PODA</span><span class="text-terra-fern">✽</span>
+      <span>RIEGO AUTOMÁTICO</span><span class="text-terra-fern">✽</span>
+      <span>PAISAJISMO</span><span class="text-terra-fern">✽</span>
+      <span>ÁRBOLES Y ARBUSTOS</span><span class="text-terra-fern">✽</span>
+      <span>LIMPIEZA DE TEMPORADA</span><span class="text-terra-fern">✽</span>
+      <span>DISEÑO DE JARDINES</span><span class="text-terra-fern">✽</span>
+      <span>CÉSPED Y PODA</span><span class="text-terra-fern">✽</span>
+      <span>RIEGO AUTOMÁTICO</span><span class="text-terra-fern">✽</span>
+      <span>PAISAJISMO</span><span class="text-terra-fern">✽</span>
+      <span>ÁRBOLES Y ARBUSTOS</span><span class="text-terra-fern">✽</span>
+      <span>LIMPIEZA DE TEMPORADA</span><span class="text-terra-fern">✽</span>
     </div>
   </div>
 
   <!-- Services -->
-  <section id="services" class="py-24 bg-garage-800">
+  <section id="services" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16 reveal">
-        <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">WHAT WE DO</p>
-        <h2 class="font-bebas text-5xl sm:text-6xl">OUR <span class="text-garage-red">SERVICES</span></h2>
-        <p class="text-gray-400 mt-4 max-w-xl mx-auto">Full-service auto repair for all makes and models. From routine maintenance to major overhauls.</p>
+        <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">LO QUE HACEMOS</p>
+        <h2 class="font-display font-semibold text-5xl sm:text-6xl">Nuestros <span class="italic text-terra-moss">Servicios</span></h2>
+        <p class="text-terra-forest/60 mt-4 max-w-xl mx-auto">Cuidado integral de exteriores, desde el mantenimiento semanal hasta proyectos completos de paisajismo.</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
-          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
-            <i class="fas fa-oil-can text-2xl text-garage-redLight"></i>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-tree text-2xl text-terra-moss"></i>
           </div>
-          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Oil Change</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Full synthetic, synthetic blend, or conventional oil changes with OEM filter replacement.</p>
-          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $39.99</p>
+          <h3 class="font-display font-semibold text-2xl mb-2">Diseño de Jardines</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Planos personalizados según tu terreno, luz y estilo. Del boceto a la siembra.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $299</p>
         </div>
-        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
-          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
-            <i class="fas fa-car-battery text-2xl text-garage-redLight"></i>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-cut text-2xl text-terra-moss"></i>
           </div>
-          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Battery Service</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Testing, replacement, and charging system diagnostics. Free installation with purchase.</p>
-          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $89.99</p>
+          <h3 class="font-display font-semibold text-2xl mb-2">Césped y Poda</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Corte, bordeado y fertilización regular para un césped siempre saludable.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $49/visita</p>
         </div>
-        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
-          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
-            <i class="fas fa-tire text-2xl text-garage-redLight"></i>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-tint text-2xl text-terra-moss"></i>
           </div>
-          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Tires & Alignment</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Tire sales, rotation, balancing, and 4-wheel computer alignment for smooth driving.</p>
-          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $49.99</p>
+          <h3 class="font-display font-semibold text-2xl mb-2">Riego Automático</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Instalación y mantenimiento de sistemas de riego eficientes que ahorran agua.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $199</p>
         </div>
-        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
-          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
-            <i class="fas fa-fan text-2xl text-garage-redLight"></i>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-mountain text-2xl text-terra-moss"></i>
           </div>
-          <h3 class="font-bebas text-2xl mb-2 tracking-wide">AC & Heating</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Complete HVAC service. Recharge, leak detection, compressor repair, and heater core service.</p>
-          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $69.99</p>
+          <h3 class="font-display font-semibold text-2xl mb-2">Hardscaping</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Senderos, terrazas y muros de piedra que le dan estructura a tu jardín.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $499</p>
         </div>
-        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
-          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
-            <i class="fas fa-car-crash text-2xl text-garage-redLight"></i>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-spa text-2xl text-terra-moss"></i>
           </div>
-          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Brake Service</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Pad and rotor replacement, brake fluid flush, caliper service. Your safety is our priority.</p>
-          <p class="text-garage-redLight font-bebas text-2xl mt-4">FROM $129.99</p>
+          <h3 class="font-display font-semibold text-2xl mb-2">Árboles y Arbustos</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Poda formativa, control de plagas y trasplante seguro para tu vegetación.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Desde $79</p>
         </div>
-        <div class="service-card bg-garage-900 border border-garage-700 rounded-xl p-8 hover:border-garage-red/50 transition-all group reveal">
-          <div class="service-icon w-16 h-16 bg-garage-red/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300">
-            <i class="fas fa-engine text-2xl text-garage-redLight"></i>
+        <div class="service-card bg-terra-cream border border-terra-100 rounded-2xl p-8 hover:border-terra-fern/50 transition-all group reveal">
+          <div class="service-icon w-16 h-16 bg-terra-mint/50 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300">
+            <i class="fas fa-broom text-2xl text-terra-moss"></i>
           </div>
-          <h3 class="font-bebas text-2xl mb-2 tracking-wide">Engine Repair</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Diagnostics, timing belts, head gaskets, and complete engine rebuilds. All engines, all problems.</p>
-          <p class="text-garage-redLight font-bebas text-2xl mt-4">FREE DIAGNOSTIC</p>
+          <h3 class="font-display font-semibold text-2xl mb-2">Limpieza de Temporada</h3>
+          <p class="text-terra-forest/60 text-sm leading-relaxed">Preparamos tu jardín para cada estación: hojas, ramas y renovación de suelo.</p>
+          <p class="text-terra-moss font-display font-semibold text-xl mt-4">Visita gratis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="py-20 bg-terra-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 reveal">
+        <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">NUESTRO TRABAJO</p>
+        <h2 class="font-display font-semibold text-4xl sm:text-5xl">Proyectos en <span class="italic text-terra-moss">Houston</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="rounded-2xl overflow-hidden h-72 reveal relative group">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un sistema de riego automático">
+            <rect width="800" height="600" fill="#EFEBDD"/>
+            <rect x="0" y="420" width="800" height="180" fill="#52B788"/>
+            <rect x="0" y="460" width="800" height="140" fill="#2D6A4F"/>
+            <rect x="390" y="440" width="20" height="60" fill="#173A2C"/>
+            <circle cx="400" cy="430" r="14" fill="#173A2C"/>
+            <g stroke="#F8F6F1" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9">
+              <path d="M400 430 Q320 350 250 400"/>
+              <path d="M400 430 Q480 350 550 400"/>
+              <path d="M400 430 Q400 300 400 250"/>
+              <path d="M400 430 Q340 380 300 430"/>
+              <path d="M400 430 Q460 380 500 430"/>
+            </g>
+            <g fill="#F8F6F1" opacity="0.9">
+              <circle cx="250" cy="400" r="5"/>
+              <circle cx="550" cy="400" r="5"/>
+              <circle cx="400" cy="250" r="5"/>
+              <circle cx="300" cy="430" r="5"/>
+              <circle cx="500" cy="430" r="5"/>
+            </g>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-terra-forest/70 via-transparent to-transparent flex items-end p-5">
+            <p class="text-white font-display font-semibold text-lg">Riego Automático</p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden h-72 reveal relative group">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un jardinero podando un seto">
+            <rect width="800" height="600" fill="#F7F5EE"/>
+            <rect x="0" y="480" width="800" height="120" fill="#52B788"/>
+            <path d="M100 480 Q100 380 250 380 Q400 380 400 480 Z" fill="#2D6A4F"/>
+            <path d="M420 480 Q420 400 550 400 Q680 400 680 480 Z" fill="#2D6A4F"/>
+            <circle cx="330" cy="360" r="24" fill="#F8F6F1"/>
+            <rect x="308" y="382" width="44" height="80" rx="16" fill="#173A2C"/>
+            <rect x="316" y="460" width="12" height="55" fill="#6B4F3B"/>
+            <rect x="336" y="460" width="12" height="55" fill="#6B4F3B"/>
+            <rect x="352" y="400" width="70" height="14" rx="6" fill="#52B788" transform="rotate(-15 352 400)"/>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-terra-forest/70 via-transparent to-transparent flex items-end p-5">
+            <p class="text-white font-display font-semibold text-lg">Poda y Diseño</p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden h-72 reveal relative group sm:col-span-2 lg:col-span-1">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un sendero de piedra rodeado de arbustos">
+            <rect width="800" height="600" fill="#EFEBDD"/>
+            <rect x="0" y="0" width="800" height="350" fill="#B7E4C7"/>
+            <rect x="0" y="350" width="800" height="250" fill="#52B788"/>
+            <g fill="#F8F6F1">
+              <ellipse cx="400" cy="560" rx="70" ry="24"/>
+              <ellipse cx="340" cy="500" rx="60" ry="20"/>
+              <ellipse cx="440" cy="450" rx="55" ry="18"/>
+              <ellipse cx="380" cy="400" rx="48" ry="16"/>
+              <ellipse cx="420" cy="360" rx="40" ry="14"/>
+            </g>
+            <g fill="#2D6A4F">
+              <circle cx="200" cy="480" r="35"/>
+              <circle cx="600" cy="460" r="38"/>
+              <circle cx="230" cy="400" r="26"/>
+              <circle cx="570" cy="380" r="28"/>
+            </g>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-terra-forest/70 via-transparent to-transparent flex items-end p-5">
+            <p class="text-white font-display font-semibold text-lg">Hardscaping</p>
+          </div>
         </div>
       </div>
     </div>
@@ -249,59 +367,88 @@
   <section id="about" class="py-24 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="reveal">
-          <div class="relative">
-            <img src="images/mechanic.jpg" alt="Professional mechanic at work" class="rounded-xl w-full object-cover h-[500px]">
-            <div class="absolute -bottom-6 -right-6 bg-garage-red p-6 rounded-xl">
-              <p class="font-bebas text-5xl">15+</p>
-              <p class="text-sm">Years of trusted<br>auto repair service</p>
-            </div>
+        <div class="relative reveal">
+          <div class="blob-2 overflow-hidden w-full h-[500px]">
+            <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de jardineros trabajando con una carretilla">
+              <rect width="800" height="600" fill="#F7F5EE"/>
+              <path d="M0 420 Q200 380 400 410 T800 400 V600 H0 Z" fill="#B7E4C7"/>
+              <path d="M0 470 Q220 440 440 460 T800 450 V600 H0 Z" fill="#52B788"/>
+              <g>
+                <circle cx="300" cy="500" r="22" fill="none" stroke="#173A2C" stroke-width="6"/>
+                <path d="M270 460 L400 460 L380 500 L280 500 Z" fill="#2D6A4F"/>
+                <line x1="300" y1="500" x2="230" y2="470" stroke="#6B4F3B" stroke-width="6"/>
+                <line x1="230" y1="470" x2="200" y2="440" stroke="#6B4F3B" stroke-width="6"/>
+              </g>
+              <g>
+                <circle cx="480" cy="360" r="26" fill="#F8F6F1"/>
+                <rect x="455" y="385" width="50" height="90" rx="20" fill="#2D6A4F"/>
+                <rect x="465" y="470" width="14" height="60" fill="#173A2C"/>
+                <rect x="490" y="470" width="14" height="60" fill="#173A2C"/>
+              </g>
+              <g>
+                <circle cx="580" cy="345" r="24" fill="#F8F6F1"/>
+                <rect x="558" y="368" width="46" height="85" rx="18" fill="#52B788"/>
+                <rect x="566" y="450" width="13" height="58" fill="#173A2C"/>
+                <rect x="588" y="450" width="13" height="58" fill="#173A2C"/>
+                <line x1="604" y1="390" x2="640" y2="360" stroke="#6B4F3B" stroke-width="6" stroke-linecap="round"/>
+              </g>
+              <g fill="#2D6A4F">
+                <circle cx="120" cy="500" r="20"/>
+                <circle cx="150" cy="510" r="16"/>
+                <circle cx="680" cy="510" r="22"/>
+                <circle cx="710" cy="500" r="18"/>
+              </g>
+            </svg>
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-terra-moss text-white p-6 rounded-2xl shadow-lg">
+            <p class="font-display font-semibold text-5xl">15+</p>
+            <p class="text-sm">años cuidando<br>jardines con cariño</p>
           </div>
         </div>
         <div class="reveal">
-          <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">ABOUT GARAGEPRO</p>
-          <h2 class="font-bebas text-5xl sm:text-6xl mb-6">BUILT ON <span class="text-garage-red">TRUST</span> & <span class="text-garage-red">QUALITY</span></h2>
-          <p class="text-gray-400 leading-relaxed mb-6">
-            GaragePro started with one mechanic and a dream: to provide honest, high-quality auto repair that everyday people can afford. No upsells, no surprises, just great work at fair prices.
+          <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">SOBRE TERRA VERDE</p>
+          <h2 class="font-display font-semibold text-5xl sm:text-6xl mb-6">Crecemos con <span class="italic text-terra-moss">paciencia</span> y cuidado</h2>
+          <p class="text-terra-forest/70 leading-relaxed mb-6">
+            Terra Verde nació de una pasión simple: hacer que cada patio se sienta como un lugar al que quieres volver. Sin atajos, sin plantas que no sobreviven el primer mes, solo trabajo honesto y bien hecho.
           </p>
-          <p class="text-gray-400 leading-relaxed mb-8">
-            Our ASE-certified technicians use the latest diagnostic equipment and OEM parts to ensure every repair meets factory standards. We explain every issue in plain English and always get your approval before any work begins.
+          <p class="text-terra-forest/70 leading-relaxed mb-8">
+            Nuestro equipo de jardineros certificados conoce el clima y suelo de la zona como la palma de su mano. Te explicamos cada recomendación en palabras simples y siempre pedimos tu aprobación antes de empezar.
           </p>
           <div class="grid grid-cols-2 gap-6">
             <div class="flex items-start gap-3">
-              <div class="w-10 h-10 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                <i class="fas fa-certificate text-garage-redLight"></i>
+              <div class="w-10 h-10 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-certificate text-terra-moss"></i>
               </div>
               <div>
-                <h4 class="font-semibold">ASE Certified</h4>
-                <p class="text-sm text-gray-500">Master technicians on staff</p>
+                <h4 class="font-semibold">Jardineros Certificados</h4>
+                <p class="text-sm text-terra-forest/50">Formación continua en horticultura</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
-              <div class="w-10 h-10 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                <i class="fas fa-shield-alt text-garage-redLight"></i>
+              <div class="w-10 h-10 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-shield-alt text-terra-moss"></i>
               </div>
               <div>
-                <h4 class="font-semibold">2-Year Warranty</h4>
-                <p class="text-sm text-gray-500">On all parts and labor</p>
+                <h4 class="font-semibold">Garantía de 1 Año</h4>
+                <p class="text-sm text-terra-forest/50">En plantas e instalaciones</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
-              <div class="w-10 h-10 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                <i class="fas fa-dollar-sign text-garage-redLight"></i>
+              <div class="w-10 h-10 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-dollar-sign text-terra-moss"></i>
               </div>
               <div>
-                <h4 class="font-semibold">Fair Pricing</h4>
-                <p class="text-sm text-gray-500">Transparent quotes, no surprises</p>
+                <h4 class="font-semibold">Precios Claros</h4>
+                <p class="text-sm text-terra-forest/50">Cotizaciones sin sorpresas</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
-              <div class="w-10 h-10 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                <i class="fas fa-bolt text-garage-redLight"></i>
+              <div class="w-10 h-10 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-water text-terra-moss"></i>
               </div>
               <div>
-                <h4 class="font-semibold">Same-Day Service</h4>
-                <p class="text-sm text-gray-500">Most repairs done in hours</p>
+                <h4 class="font-semibold">Uso Responsable del Agua</h4>
+                <p class="text-sm text-terra-forest/50">Diseños pensados para ahorrar</p>
               </div>
             </div>
           </div>
@@ -311,89 +458,90 @@
   </section>
 
   <!-- Why Choose Us -->
-  <section id="why-us" class="py-24 bg-garage-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+  <section id="why-us" class="py-24 bg-terra-forest text-white relative overflow-hidden">
+    <div class="absolute -right-24 -top-24 w-72 h-72 bg-terra-moss/40 blob pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
       <div class="text-center mb-16 reveal">
-        <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">THE GARAGEPRO DIFFERENCE</p>
-        <h2 class="font-bebas text-5xl sm:text-6xl">WHY DRIVERS <span class="text-garage-red">TRUST US</span></h2>
+        <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">LA DIFERENCIA TERRA VERDE</p>
+        <h2 class="font-display font-semibold text-5xl sm:text-6xl">Por qué confían <span class="italic text-terra-mint">en nosotros</span></h2>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="text-center reveal">
-          <div class="w-20 h-20 bg-garage-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-search-dollar text-3xl text-garage-redLight"></i>
+          <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-clipboard-list text-3xl text-terra-fern"></i>
           </div>
-          <h3 class="font-bebas text-xl tracking-wide mb-2">FREE DIAGNOSTIC</h3>
-          <p class="text-gray-400 text-sm">We scan your car and explain what's wrong before you spend a dime. No hidden fees.</p>
+          <h3 class="font-display font-semibold text-xl mb-2">Evaluación Gratis</h3>
+          <p class="text-terra-mint/70 text-sm">Visitamos tu terreno y te damos un plan claro antes de cobrar nada.</p>
         </div>
         <div class="text-center reveal">
-          <div class="w-20 h-20 bg-garage-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-handshake text-3xl text-garage-redLight"></i>
+          <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-handshake text-3xl text-terra-fern"></i>
           </div>
-          <h3 class="font-bebas text-xl tracking-wide mb-2">NO PRESSURE</h3>
-          <p class="text-gray-400 text-sm">We give you the facts and let you decide. No pushy sales tactics, ever.</p>
+          <h3 class="font-display font-semibold text-xl mb-2">Sin Presión</h3>
+          <p class="text-terra-mint/70 text-sm">Te damos opciones honestas y tú decides el ritmo del proyecto.</p>
         </div>
         <div class="text-center reveal">
-          <div class="w-20 h-20 bg-garage-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-camera text-3xl text-garage-redLight"></i>
+          <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-camera text-3xl text-terra-fern"></i>
           </div>
-          <h3 class="font-bebas text-xl tracking-wide mb-2">PHOTO REPORTS</h3>
-          <p class="text-gray-400 text-sm">See photos of the actual problem on your phone before we fix anything.</p>
+          <h3 class="font-display font-semibold text-xl mb-2">Seguimiento con Fotos</h3>
+          <p class="text-terra-mint/70 text-sm">Ves el avance de tu jardín en tu teléfono, semana a semana.</p>
         </div>
         <div class="text-center reveal">
-          <div class="w-20 h-20 bg-garage-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-shuttle-van text-3xl text-garage-redLight"></i>
+          <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-calendar-check text-3xl text-terra-fern"></i>
           </div>
-          <h3 class="font-bebas text-xl tracking-wide mb-2">FREE SHUTTLE</h3>
-          <p class="text-gray-400 text-sm">Need a ride? Our free shuttle service gets you where you need to go.</p>
+          <h3 class="font-display font-semibold text-xl mb-2">Visitas Recurrentes</h3>
+          <p class="text-terra-mint/70 text-sm">Planes de mantenimiento flexibles, semanales o mensuales.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Reviews -->
-  <section id="reviews" class="py-24">
+  <section id="reviews" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16 reveal">
-        <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">TESTIMONIALS</p>
-        <h2 class="font-bebas text-5xl sm:text-6xl">WHAT OUR <span class="text-garage-red">CUSTOMERS</span> SAY</h2>
+        <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">TESTIMONIOS</p>
+        <h2 class="font-display font-semibold text-5xl sm:text-6xl">Lo que dicen <span class="italic text-terra-moss">nuestros clientes</span></h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-garage-800 border border-garage-700 rounded-xl p-8 reveal">
-          <div class="flex text-garage-redLight mb-4">
+        <div class="bg-terra-cream border border-terra-100 rounded-2xl p-8 reveal">
+          <div class="flex text-terra-fern mb-4">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
-          <p class="text-gray-300 mb-6 leading-relaxed">"Finally, a mechanic I can trust! They showed me exactly what was wrong with my brakes and fixed it same day. The price was half what the dealership quoted."</p>
+          <p class="text-terra-forest/70 mb-6 leading-relaxed">"Transformaron un patio de tierra en un jardín precioso en tres semanas. Nos explicaron cada planta y por qué la eligieron para nuestro clima."</p>
           <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-garage-red rounded-full flex items-center justify-center font-bold">MR</div>
+            <div class="w-12 h-12 bg-terra-moss rounded-full flex items-center justify-center font-bold text-white">MR</div>
             <div>
-              <p class="font-semibold">Miguel Rodriguez</p>
-              <p class="text-sm text-gray-500">Honda Civic Owner</p>
+              <p class="font-semibold">Marisol Reyes</p>
+              <p class="text-sm text-terra-forest/50">Diseño de jardín completo</p>
             </div>
           </div>
         </div>
-        <div class="bg-garage-800 border border-garage-700 rounded-xl p-8 reveal">
-          <div class="flex text-garage-redLight mb-4">
+        <div class="bg-terra-cream border border-terra-100 rounded-2xl p-8 reveal">
+          <div class="flex text-terra-fern mb-4">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
-          <p class="text-gray-300 mb-6 leading-relaxed">"My AC went out in the middle of summer. GaragePro had it ice cold again in 2 hours. They even checked my coolant for free. These guys are the real deal."</p>
+          <p class="text-terra-forest/70 mb-6 leading-relaxed">"El sistema de riego que instalaron nos bajó el consumo de agua a la mitad. Además el césped nunca se había visto tan verde."</p>
           <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-garage-red rounded-full flex items-center justify-center font-bold">SL</div>
+            <div class="w-12 h-12 bg-terra-moss rounded-full flex items-center justify-center font-bold text-white">SL</div>
             <div>
-              <p class="font-semibold">Sarah Lopez</p>
-              <p class="text-sm text-gray-500">Toyota RAV4 Owner</p>
+              <p class="font-semibold">Samuel López</p>
+              <p class="text-sm text-terra-forest/50">Riego automático</p>
             </div>
           </div>
         </div>
-        <div class="bg-garage-800 border border-garage-700 rounded-xl p-8 reveal">
-          <div class="flex text-garage-redLight mb-4">
+        <div class="bg-terra-cream border border-terra-100 rounded-2xl p-8 reveal">
+          <div class="flex text-terra-fern mb-4">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
-          <p class="text-gray-300 mb-6 leading-relaxed">"I take all 3 of my company trucks here. They've never let me down. Honest, fast, and they stand behind their work with that 2-year warranty."</p>
+          <p class="text-terra-forest/70 mb-6 leading-relaxed">"Tenemos el plan de mantenimiento mensual desde hace dos años. Siempre puntuales y el jardín se mantiene impecable todo el año."</p>
           <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-garage-red rounded-full flex items-center justify-center font-bold">JT</div>
+            <div class="w-12 h-12 bg-terra-moss rounded-full flex items-center justify-center font-bold text-white">JT</div>
             <div>
-              <p class="font-semibold">James Thompson</p>
-              <p class="text-sm text-gray-500">Small Business Owner</p>
+              <p class="font-semibold">Julia Torres</p>
+              <p class="text-sm text-terra-forest/50">Mantenimiento mensual</p>
             </div>
           </div>
         </div>
@@ -402,111 +550,108 @@
   </section>
 
   <!-- CTA -->
-  <section class="py-24 bg-garage-800 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(220,38,38,0.1) 35px, rgba(220,38,38,0.1) 70px);"></div>
-    </div>
+  <section class="py-24 bg-terra-mint/30 relative overflow-hidden">
+    <div class="absolute -left-20 top-1/2 -translate-y-1/2 w-72 h-72 bg-terra-fern/20 blob pointer-events-none"></div>
     <div class="max-w-4xl mx-auto px-4 text-center relative reveal">
-      <h2 class="font-bebas text-5xl sm:text-6xl md:text-7xl mb-6">DON'T IGNORE<br>THAT <span class="text-garage-red">CHECK ENGINE</span> LIGHT</h2>
-      <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Small problems turn into expensive repairs. Bring your car in for a free diagnostic and catch issues before they become headaches.</p>
+      <h2 class="font-display font-semibold text-5xl sm:text-6xl md:text-7xl mb-6">El jardín que imaginas<br>empieza con una <span class="italic text-terra-moss">visita</span></h2>
+      <p class="text-xl text-terra-forest/70 mb-8 max-w-2xl mx-auto">Agenda tu evaluación gratuita y te llevamos un plan a la medida de tu espacio y presupuesto.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="#contact" class="btn-red px-10 py-5 rounded-lg font-bold text-xl inline-flex items-center gap-3">
-          <i class="fas fa-wrench"></i> Book Your Service
+        <a href="#contact" class="btn-fern text-white px-10 py-5 rounded-full font-bold text-xl inline-flex items-center gap-3">
+          <i class="fas fa-seedling"></i> Reservar Visita
         </a>
       </div>
-      <p class="text-gray-500 mt-6 text-sm"><i class="fas fa-check-circle text-garage-redLight mr-1"></i> Free 24-point inspection with every visit</p>
+      <p class="text-terra-forest/50 mt-6 text-sm"><i class="fas fa-check-circle text-terra-fern mr-1"></i> Evaluación de suelo incluida en cada visita</p>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-24">
+  <section id="contact" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="grid lg:grid-cols-2 gap-16">
         <div class="reveal">
-          <p class="text-garage-redLight font-semibold tracking-wider text-sm mb-3">GET IN TOUCH</p>
-          <h2 class="font-bebas text-5xl sm:text-6xl mb-6">SCHEDULE YOUR <span class="text-garage-red">SERVICE</span></h2>
-          <p class="text-gray-400 mb-8 leading-relaxed">Fill out the form and we'll get back to you within 30 minutes during business hours to confirm your appointment.</p>
+          <p class="text-terra-fern font-semibold tracking-wider text-sm mb-3">CONTÁCTANOS</p>
+          <h2 class="font-display font-semibold text-5xl sm:text-6xl mb-6">Agenda tu <span class="italic text-terra-moss">visita</span></h2>
+          <p class="text-terra-forest/60 mb-8 leading-relaxed">Llena el formulario y te contactamos en menos de 30 minutos en horario laboral para confirmar tu cita.</p>
           
           <div class="space-y-6">
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-map-marker-alt text-garage-redLight"></i>
+              <div class="w-12 h-12 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-map-marker-alt text-terra-moss"></i>
               </div>
               <div>
-                <h4 class="font-semibold">Visit Us</h4>
-                <p class="text-gray-400">2850 Industrial Blvd, Suite 12<br>Houston, TX 77045</p>
+                <h4 class="font-semibold">Visítanos</h4>
+                <p class="text-terra-forest/60">4820 Main Street<br>Houston, TX 77002</p>
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-phone text-garage-redLight"></i>
+              <div class="w-12 h-12 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-phone text-terra-moss"></i>
               </div>
               <div>
-                <h4 class="font-semibold">Call Us</h4>
-                <p class="text-gray-400">(555) 234-5678</p>
+                <h4 class="font-semibold">Llámanos</h4>
+                <p class="text-terra-forest/60">(713) 555-0142</p>
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-garage-red/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-envelope text-garage-redLight"></i>
+              <div class="w-12 h-12 bg-terra-mint/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-envelope text-terra-moss"></i>
               </div>
               <div>
                 <h4 class="font-semibold">Email</h4>
-                <p class="text-gray-400">service@garagepro.com</p>
+                <p class="text-terra-forest/60">hola@terraverdehouston.com</p>
               </div>
             </div>
           </div>
 
           <div class="mt-10">
-            <h4 class="font-bebas text-xl tracking-wide mb-4">BUSINESS HOURS</h4>
+            <h4 class="font-display font-semibold text-xl mb-4">Horario</h4>
             <div class="space-y-2 text-sm">
-              <div class="flex justify-between border-b border-garage-700 pb-2"><span>Monday - Friday</span><span class="text-gray-400">7:00 AM - 7:00 PM</span></div>
-              <div class="flex justify-between border-b border-garage-700 pb-2"><span>Saturday</span><span class="text-gray-400">8:00 AM - 5:00 PM</span></div>
-              <div class="flex justify-between"><span>Sunday</span><span class="text-garage-redLight">Closed</span></div>
+              <div class="flex justify-between border-b border-terra-100 pb-2"><span>Lunes - Viernes</span><span class="text-terra-forest/60">7:00 AM - 6:00 PM</span></div>
+              <div class="flex justify-between border-b border-terra-100 pb-2"><span>Sábado</span><span class="text-terra-forest/60">8:00 AM - 2:00 PM</span></div>
+              <div class="flex justify-between"><span>Domingo</span><span class="text-terra-fern">Cerrado</span></div>
             </div>
           </div>
         </div>
 
-        <div class="bg-garage-800 border border-garage-700 rounded-xl p-8 reveal">
+        <div class="bg-terra-cream border border-terra-100 rounded-2xl p-8 reveal">
           <form id="bookingForm">
             <div class="grid sm:grid-cols-2 gap-4 mb-4">
               <div>
-                <label class="block text-sm font-medium mb-2">First Name</label>
-                <input type="text" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors" placeholder="John">
+                <label class="block text-sm font-medium mb-2">Nombre</label>
+                <input type="text" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors" placeholder="Ana">
               </div>
               <div>
-                <label class="block text-sm font-medium mb-2">Last Name</label>
-                <input type="text" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors" placeholder="Doe">
+                <label class="block text-sm font-medium mb-2">Apellido</label>
+                <input type="text" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors" placeholder="Martínez">
               </div>
             </div>
             <div class="mb-4">
-              <label class="block text-sm font-medium mb-2">Phone</label>
-              <input type="tel" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors" placeholder="(555) 123-4567">
+              <label class="block text-sm font-medium mb-2">Teléfono</label>
+              <input type="tel" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors" placeholder="(713) 555-0198">
             </div>
             <div class="mb-4">
-              <label class="block text-sm font-medium mb-2">Vehicle Info (Year/Make/Model)</label>
-              <input type="text" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors" placeholder="2019 Honda Accord">
+              <label class="block text-sm font-medium mb-2">Tamaño aproximado del jardín</label>
+              <input type="text" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors" placeholder="Ej. 150 m²">
             </div>
             <div class="mb-4">
-              <label class="block text-sm font-medium mb-2">Service Needed</label>
-              <select required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors">
-                <option value="">Select a service...</option>
-                <option>Oil Change</option>
-                <option>Brake Service</option>
-                <option>AC/Heating</option>
-                <option>Engine Repair</option>
-                <option>Battery Service</option>
-                <option>Tires & Alignment</option>
-                <option>Diagnostic Check</option>
-                <option>Other</option>
+              <label class="block text-sm font-medium mb-2">Servicio deseado</label>
+              <select required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors">
+                <option value="">Selecciona un servicio...</option>
+                <option>Diseño de Jardines</option>
+                <option>Césped y Poda</option>
+                <option>Riego Automático</option>
+                <option>Hardscaping</option>
+                <option>Árboles y Arbustos</option>
+                <option>Limpieza de Temporada</option>
+                <option>Otro</option>
               </select>
             </div>
             <div class="mb-6">
-              <label class="block text-sm font-medium mb-2">Preferred Date</label>
-              <input type="date" required class="w-full bg-garage-900 border border-garage-600 rounded-lg px-4 py-3 focus:border-garage-red focus:outline-none transition-colors">
+              <label class="block text-sm font-medium mb-2">Fecha preferida</label>
+              <input type="date" required class="w-full bg-white border border-terra-100 rounded-lg px-4 py-3 focus:border-terra-fern focus:outline-none transition-colors">
             </div>
-            <button type="submit" class="btn-red w-full py-4 rounded-lg font-bold text-lg">
-              <i class="fas fa-calendar-check mr-2"></i> Request Appointment
+            <button type="submit" class="btn-fern w-full text-white py-4 rounded-full font-bold text-lg">
+              <i class="fas fa-seedling mr-2"></i> Solicitar Cita
             </button>
           </form>
         </div>
@@ -515,25 +660,24 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-garage-900 border-t border-garage-700 py-12">
+  <footer class="bg-terra-forest text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex flex-col md:flex-row justify-between items-center gap-6">
         <div class="flex items-center gap-3">
-          <svg class="w-8 h-8 text-garage-red" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="6"/>
-            <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="4" stroke-dasharray="8 6"/>
-            <circle cx="50" cy="50" r="8" fill="currentColor"/>
+          <svg class="w-8 h-8 text-terra-fern" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 90C50 90 20 75 20 45C20 25 35 10 50 10C65 10 80 25 80 45C80 75 50 90 50 90Z" stroke="currentColor" stroke-width="5"/>
+            <path d="M50 90V30" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
           </svg>
           <div>
-            <span class="font-bebas text-xl tracking-wider">GARAGE<span class="text-garage-red">PRO</span></span>
-            <p class="text-[10px] tracking-[0.3em] text-garage-500">AUTO REPAIR</p>
+            <span class="font-display font-semibold text-xl">Terra <span class="text-terra-fern">Verde</span></span>
+            <p class="text-[10px] tracking-[0.3em] text-terra-mint/60">PAISAJISMO</p>
           </div>
         </div>
-        <p class="text-gray-500 text-sm">2024 GaragePro Auto Repair. All rights reserved.</p>
+        <p class="text-terra-mint/50 text-sm">2026 Terra Verde Paisajismo · Houston, TX. Todos los derechos reservados.</p>
         <div class="flex gap-4">
-          <a href="#" class="w-10 h-10 bg-garage-800 rounded-full flex items-center justify-center hover:bg-garage-red transition-colors"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="w-10 h-10 bg-garage-800 rounded-full flex items-center justify-center hover:bg-garage-red transition-colors"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="w-10 h-10 bg-garage-800 rounded-full flex items-center justify-center hover:bg-garage-red transition-colors"><i class="fab fa-google"></i></a>
+          <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-terra-fern transition-colors"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-terra-fern transition-colors"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-terra-fern transition-colors"><i class="fab fa-google"></i></a>
         </div>
       </div>
     </div>
@@ -544,17 +688,17 @@
     const menuBtn = document.getElementById('menuBtn');
     const closeMenu = document.getElementById('closeMenu');
     const mobileMenu = document.getElementById('mobileMenu');
-    
+
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.remove('hidden');
       mobileMenu.classList.add('flex');
     });
-    
+
     closeMenu.addEventListener('click', () => {
       mobileMenu.classList.add('hidden');
       mobileMenu.classList.remove('flex');
     });
-    
+
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
@@ -582,21 +726,27 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // Vine divider draw-on-load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('vinePath1').classList.add('drawn');
+      }, 300);
+    });
+
     // Form
     document.getElementById('bookingForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Thank you! We will call you within 30 minutes to confirm your appointment.');
+      alert('¡Gracias! Te llamaremos en los próximos 30 minutos para confirmar tu cita.');
       this.reset();
     });
 
-    // Navbar
-    let lastScroll = 0;
+    // Navbar shadow on scroll
     window.addEventListener('scroll', () => {
       const navbar = document.getElementById('navbar');
       if (window.scrollY > 100) {
-        navbar.classList.add('shadow-lg');
+        navbar.classList.add('shadow-md');
       } else {
-        navbar.classList.remove('shadow-lg');
+        navbar.classList.remove('shadow-md');
       }
     });
   </script>
